@@ -1,6 +1,6 @@
 # SET09102 Portfolio
 
-Welcome to my portfolio for the Software Engineering Module. In this repository, you'll find my weekly entries, reflections, and evidence of the work I've completed throughout the course. This portfolio serves as a record of my progress and a reflection of my learning journey.
+Welcome to my portfolio for the Software Engineering Module. In this repository, you'll find my weekly entries contaning reflections, and evidence of the work I've completed throughout the course. This portfolio serves as a record of my progress and a reflection of my learning journey.
 
 ## Table of Contents
 
