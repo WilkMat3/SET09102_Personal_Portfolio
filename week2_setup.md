@@ -1,56 +1,52 @@
 # Setup
 
-This section documents your practical work in week 2.
-
-The main requirements are to show that:
-
-1. Your development environment is correctly set up
-2. You understand the setup including potential alternative configuration settings
-
 ## Environment configuration
 
-Here, you should include appropriate screenshots with additional commentary. 
+This section describes my development environment set up for the Purple Group project. 
+### GitHub Shared Repository
 
-**DO**
+![1. GitHub Repository](./images/Repository_My_access_Github.png)
+*Caption: Screenshot of the main page of the group project repository*
+On the image ![1. GitHub Repository] I have higlighted in red name of the repository(top left) and my name(bottom right) in the Contibutors tab, thus confirming that I have access to the project's repository.
+Setting up the actual repository was not a diffcult task. Any Github desktop user can click a "+" on the top right of the screen which would open up options. After clicking on the "create repository" a user needs name the repository and optionall change other settings. After clicking the "Create repositry" the process is completed.
+In case of our project we have set the repository to private - we did not want anyone else to copy our work. 
+Aside from that the person responsible for creating the repository had to invite other users which is also a trivial process. This option shows up on the main screen of the private Github repository and after selecting it a user is required to provide Github handels.
 
-* Place your image files in the `images` folder
-* Choose your screenshots carefully so that they communicate the appropriate information.
-  Many screenshots with no clear purpose or with trivial differences are of little value.
-* Provide <ins>descriptive</ins> commentary to explain why the screenshot is included. 
-  what it shows and point out any particularly significant details.
-* Modify your screenshots - for example, by adding arrows, outlines or other highlighting 
-  techniques - to enhance their communication value.
-* Remove unnecessary material from your screenshots such as toolbars, other windows and 
-  computer desktop to eliminate distractions.
-* Ensure that any important content is clearly legible. Pay particular attention to text
-  size and image resolution.
-* Use [numbered captions](https://towardsdev.com/3-ways-to-add-a-caption-to-an-image-using-markdown-f2ca30562be6) 
-  as labels for images. Also, use the caption numbers to refer to images in your text.
+### GitHub Project Task Board
 
-**DON'T**
+![2. GitHub Project Task Board](./images/github_project_task_board.png)
+*Caption: Our project Task Board*
 
-* Expect the reader to understand your reasons for including a screenshot. If you can't
-  explain it, the screenshot will not do the job on its own.
-* Include self-evident comments. For example, don't simply list the values used on a
-  configuration page if those values are clearly visible in the screenshot.
+To track tasks and ensure better organisation of the projects we created Project Task Board using Github Projects. On the image ![2. GitHub Project Task Board] Project name and my name were highlighted to confirm my access. 
+Creating a Task Board was as simple as clicking Projects when on the Group Project repository website and linking new project to the repositry. 
 
+### Visual Studio Configuration
+
+![3. Visual Studio Configuration](./images/VS repo set up.png)
+*Caption: Proof of my instance of VS code being linked to the gihub repository*
+In the image above I have highlighted the push and pull links for the group project as well as an avatar with my initials, thus confirming that my Visual Studio was linked with our github repository.  
+In my case the only required configuration was to clone the repositry in Visual Studio. I am using VS 2022 and I had relevant MAUI packages installed. 
+![4. Visual Studio Installation MAUI](./images/MAUI.png)
+*Caption: Proof of my instance of VS code being linked to the gihub repository*
+To correctly set up the Visual Studio 2022 for MAUI apps development, users have to select the MAUI package during installation as highlighted on the image 4.  
+
+To clone the repository, users have to obtain the link for the repository from it's Github page, this can be done by clicking the green "clone" button and copying the repository link as highlighted on the image 5. 
+![5. Finding  link to clone the repository](./images/LinkingRepository.png)
+Next step requires opening the Visual Studion clicking File in the top right corner and then clicking "Clone repository" providing that the user is authenticated with Github after pasting the link the user can clone the repository as per the image 6.
+![6. Linking Repository in Visual Studio](./images/VS repository.png)
+*Caption: Visual Studio options for cloning a repository*
 ## Reflection
 
-For this section, decide what points are worth making and structure your content 
-appropriately.
+### Alternative Configurations
 
-**DO**
+While our current environment is well-suited to our project, there are other option in terms of choice of IDE, version control and even the project board.
+The Virtual Studio 2022 is a great choice when developing MAUI apps, the JetBrains Rider IDE is also supporting MAUI app development. 
+We could also change Github to Azure DevOps for the version control, both allow for creating workflows and in all fairness are quite similar. 
+When it comes to the project board Github Projects is the best choice, there are other alternatives like Jira or Trello but the Github Projects is free. 
+Moreover, the vast majority of agile project managements platforms are limiting the amount of contributors on the free tier which makes the unusable in our case.
 
-* Use sub-headings to differentiate between sections
-* Provide <ins>reflective</ins> commentary that discusses, for example, limitations of
-  your current configuration, how your configuration is appropriate for the current 
-  project, alternative configuration that might be appropriate in ther circumstances, 
-  etc.
-* Mention any difficulties you had setting up your working environment and how you 
-  resolved them
+### Challenges
 
-**DON'T**
-
-* Repeat the descriptive commentary from point 1
-* Give a blow-by-blow account of everything you did. Instead, you should highlight 
-  the important points.
+While the process of setting up the development environment was trivial, we have discovered that some people in our group not used Github or have no expirence using Visual Studio.
+To help each other, we have set up a communication channel on Discord where we can share our issues and ideas. 
+---
