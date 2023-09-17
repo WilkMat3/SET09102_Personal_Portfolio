@@ -59,9 +59,9 @@ While the process of setting up the development environment was trivial, we have
 To help each other, we have set up a communication channel on Discord where we can share our issues and ideas. 
 
 ---
-[image 1]: images/Repository_My_access_Github.PNG) "Screenshot of the main page of the group project repository"
-[image 2]: images/github_project_task_board.PNG) "Our project Task Board"
-[image 3]: images/vs_cloned.PNG) "Proof of my instance of VS code being linked to the gihub repository"
-[image 4]: images/MAUI.PNG) "Configuration required for MAUI apps developemn"
-[image 5]: images/LinkingRepository.PNG) "Cloning Github repo by copying the link"
-[image 6]: images/VS_repository.PNG "Visual Studio options for cloning a repository"
+[image 1]: ./images/Repository_My_access_Github.PNG) "Screenshot of the main page of the group project repository"
+[image 2]: ./images/github_project_task_board.PNG) "Our project Task Board"
+[image 3]: ./images/vs_cloned.PNG) "Proof of my instance of VS code being linked to the gihub repository"
+[image 4]: ./images/MAUI.PNG) "Configuration required for MAUI apps developemn"
+[image 5]: ./images/LinkingRepository.PNG) "Cloning Github repo by copying the link"
+[image 6]: ./images/VS_repository.PNG "Visual Studio options for cloning a repository"
