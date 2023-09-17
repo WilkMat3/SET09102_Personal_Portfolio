@@ -9,21 +9,21 @@ This section describes my development environment set up for the Purple Group pr
 ![image 1](./images/Repository_My_access_Github.PNG)
 *Caption: Screenshot of the main page of the group project repository*
 
-On the [image 1][image1], I have highlighted in red the name of the repository (top left) and my name (bottom right) in the Contributors tab, thus confirming that I have access to the project's repository. Setting up the actual repository was not a difficult task. Any GitHub desktop user can click the "+" on the top right of the screen, which would open up options. After clicking on "create repository," a user needs to name the repository and optionally change other settings. After clicking "Create repository," the process is completed. In the case of our project, we have set the repository to private - we did not want anyone else to copy our work. Aside from that, the person responsible for creating the repository had to invite other users, which is also a trivial process. This option shows up on the main screen of the private GitHub repository, and after selecting it, a user is required to provide GitHub handles.
+On the [image 1][image1], I have highlighted in red the name of the repository (top left) and my name (bottom right) in the Contributors tab, therefore confirming that I have access to the project's repository. Setting up the actual repository was not a difficult task. Any GitHub desktop user can click the "+" on the top right of the screen, which would open up options. After clicking on "create repository," a user needs to name the repository and optionally change other settings. After clicking "Create repository," the process is completed. In the case of our project, we have set the repository to private - we did not want anyone else to copy our work. Aside from that, the person responsible for creating the repository had to invite other users, which is also a trivial process. This option shows up on the main screen of the private GitHub repository, and after selecting it, a user is required to provide GitHub handles.
 
 ### GitHub Project Task Board
 
 ![image 2](./images/github_project_task_board.PNG)
 *Caption: Our project Task Board*
 
-To track tasks and ensure better organization of the projects, we created a Project Task Board using GitHub Projects. On the [image 2][image2], the project name and my name were highlighted to confirm my access. Creating a Task Board was as simple as clicking "Projects" when on the Group Project repository website and linking a new project to the repository.
+To track tasks and assign work tickets, we created a Project Task Board using GitHub Projects. On the [image 2][image2], the project name and my name were highlighted to confirm my access. Creating a Task Board was as simple as clicking "Projects" when on the Group Project repository website and linking a new project to the repository.
 
 ### Visual Studio Configuration
 
 ![image 3](./images/vs_cloned.PNG)
 *Caption: Proof of my instance of VS code being linked to the GitHub repository*
 
-On ![image 3][image3], I have highlighted the push and pull links for the group project, as well as an avatar with my initials, thus confirming that my Visual Studio was linked with our GitHub repository. In my case, the only required configuration was to clone the repository in Visual Studio. I am using VS 2022, and I had relevant MAUI packages installed.
+On [image 3][image3], I have highlighted the push and pull links for the group project, as well as an avatar with my initials, therefore confirming that my Visual Studio was linked with our GitHub repository. In my case, the only required configuration was to clone the repository in Visual Studio. I am using VS 2022, and I had relevant MAUI packages installed.
 
 ![image 4](./images/MAUI.PNG)
 *Caption: Configuration required for MAUI apps development*
@@ -35,7 +35,7 @@ To clone the repository, users have to obtain the link for the repository from i
 ![image 5](./images/LinkingRepository.PNG)
 *Caption: Cloning GitHub repo by copying the link*
 
-The next step requires opening Visual Studio, clicking File in the top right corner, and then clicking "Clone repository." Provided that the user is authenticated with GitHub, after pasting the link, the user can clone the repository, as per [image 6][image6].
+The next step requires opening Visual Studio, clicking File in the top right corner, and then clicking "Clone repository." Provided that the user is authenticated with GitHub, after pasting the link the user can clone the repository. The [image 6][image6] shows the screen for cloning the repository.
 
 ![image 6](./images/VS_repository.PNG)
 *Caption: Visual Studio options for cloning a repository*
