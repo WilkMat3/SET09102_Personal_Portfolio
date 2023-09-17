@@ -23,12 +23,12 @@ To track tasks and assign work tickets, we created a Project Task Board using Gi
 ![image 3](./images/vs_cloned.PNG)
 *Caption: Proof of my instance of VS code being linked to the GitHub repository*
 
-On [image 3][image3], I have highlighted the push and pull links for the group project, as well as an avatar with my initials, therefore confirming that my Visual Studio was linked with our GitHub repository. In my case, the only required configuration was to clone the repository in Visual Studio. I am using VS 2022, and I had relevant MAUI packages installed.
+On the [image 3][image3], I have highlighted the push and pull links for the group project, as well as an avatar with my initials, therefore confirming that my Visual Studio was linked with our GitHub repository. In my case, the only required configuration was to clone the repository in Visual Studio. I am using VS 2022, and I had relevant MAUI packages installed.
 
 ![image 4](./images/MAUI.PNG)
 *Caption: Configuration required for MAUI apps development*
 
-To correctly set up Visual Studio 2022 for MAUI apps development, users have to select the MAUI package during installation, as highlighted on the [image 4][image4].
+To correctly set up Visual Studio 2022 for MAUI app development, users have to select the MAUI package during installation, as highlighted in the [image 4][image4].
 
 To clone the repository, users have to obtain the link for the repository from its GitHub page. This can be done by clicking the green "clone" button and copying the repository link, as highlighted on the [image 5][image5].
 
@@ -44,7 +44,7 @@ The next step requires opening Visual Studio, clicking File in the top right cor
 
 ### Alternative Configurations
 
-While our current environment is well-suited to our project, there are other options in terms of the choice of IDE, version control, and even the project board. Visual Studio 2022 is a great choice when developing MAUI apps because of support by Microsoft. The JetBrains Rider IDE also supports MAUI app development. We could also change GitHub to Azure DevOps for version control; both allow for creating workflows and are quite similar. When it comes to the project board, GitHub Projects is the best choice, but there are other alternatives like Jira or Trello. Github projects allows us to link tasks to pull requests and add extra descriptions and labels to each ticket. It does that without the need to pay extra. Moreover, the vast majority of agile project management platforms limit the number of contributors on the free tier, which makes them unusable in our case.
+While our current environment is well-suited to our project, there are other options in terms of the choice of IDE, version control, and even the project board. Visual Studio 2022 is a great choice when developing MAUI apps because of its support by Microsoft. The JetBrains Rider IDE also supports MAUI app development. We could also change GitHub to Azure DevOps for version control; both allow for creating workflows and are quite similar. When it comes to the project board, GitHub Projects is the best choice, but there are other alternatives like Jira or Trello. Github projects allow us to link tasks to pull requests and add extra descriptions and labels to each ticket. It does that without the need to pay extra. Moreover, the vast majority of agile project management platforms limit the number of contributors on the free tier, which makes them unusable in our case.
 
 ### Challenges
 
