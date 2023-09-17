@@ -26,7 +26,7 @@ Creating a Task Board was as simple as clicking Projects when on the Group Proje
 ![image 3](./images/vs_cloned.PNG)
 *Caption: Proof of my instance of VS code being linked to the gihub repository*
 
-On [image 3], I have highlighted the push and pull links for the group project as well as an avatar with my initials, thus confirming that my Visual Studio was linked with our github repository.  
+On ![image 3][#image-3], I have highlighted the push and pull links for the group project as well as an avatar with my initials, thus confirming that my Visual Studio was linked with our github repository.  
 In my case the only required configuration was to clone the repositry in Visual Studio. I am using VS 2022 and I had relevant MAUI packages installed. 
 
 ![image 4](./images/MAUI.PNG)
@@ -59,9 +59,9 @@ While the process of setting up the development environment was trivial, we have
 To help each other, we have set up a communication channel on Discord where we can share our issues and ideas. 
 
 ---
-[image 1]: ./images/Repository_My_access_Github.PNG) "Screenshot of the main page of the group project repository"
-[image 2]: ./images/github_project_task_board.PNG) "Our project Task Board"
-[image 3]: ./images/vs_cloned.PNG "Proof of my instance of VS code being linked to the GitHub repository"
-[image 4]: ./images/MAUI.PNG) "Configuration required for MAUI apps developemn"
-[image 5]: ./images/LinkingRepository.PNG) "Cloning Github repo by copying the link"
-[image 6]: ./images/VS_repository.PNG "Visual Studio options for cloning a repository"
+[#image 1]: ./images/Repository_My_access_Github.PNG) "Screenshot of the main page of the group project repository"
+[#image 2]: ./images/github_project_task_board.PNG) "Our project Task Board"
+[#image 3]: ./images/vs_cloned.PNG "Proof of my instance of VS code being linked to the GitHub repository"
+[#image 4]: ./images/MAUI.PNG) "Configuration required for MAUI apps developemn"
+[#image 5]: ./images/LinkingRepository.PNG) "Cloning Github repo by copying the link"
+[#image 6]: ./images/VS_repository.PNG "Visual Studio options for cloning a repository"
