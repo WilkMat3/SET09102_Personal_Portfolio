@@ -9,7 +9,7 @@ This section describes my development environment set up for the Purple Group pr
 ![image 1](./images/Repository_My_access_Github.PNG)
 *Caption: Screenshot of the main page of the group project repository*
 
-On the [image 1], I have highlighted in red the name of the repository (top left) and my name (bottom right) in the Contributors tab, thus confirming that I have access to the project's repository. Setting up the actual repository was not a difficult task. Any GitHub desktop user can click the "+" on the top right of the screen, which would open up options. After clicking on "create repository," a user needs to name the repository and optionally change other settings. After clicking "Create repository," the process is completed. In the case of our project, we have set the repository to private - we did not want anyone else to copy our work. Aside from that, the person responsible for creating the repository had to invite other users, which is also a trivial process. This option shows up on the main screen of the private GitHub repository, and after selecting it, a user is required to provide GitHub handles.
+On the [image 1][image1], I have highlighted in red the name of the repository (top left) and my name (bottom right) in the Contributors tab, thus confirming that I have access to the project's repository. Setting up the actual repository was not a difficult task. Any GitHub desktop user can click the "+" on the top right of the screen, which would open up options. After clicking on "create repository," a user needs to name the repository and optionally change other settings. After clicking "Create repository," the process is completed. In the case of our project, we have set the repository to private - we did not want anyone else to copy our work. Aside from that, the person responsible for creating the repository had to invite other users, which is also a trivial process. This option shows up on the main screen of the private GitHub repository, and after selecting it, a user is required to provide GitHub handles.
 
 ### GitHub Project Task Board
 
@@ -52,9 +52,9 @@ While the process of setting up the development environment was trivial, we have
 
 ---
 
-[#image-1]: ./images/Repository_My_access_Github.PNG "Screenshot of the main page of the group project repository"
-[#image-2]: ./images/github_project_task_board.PNG "Our project Task Board"
-[#image-3]: ./images/vs_cloned.PNG "Proof of my instance of VS code being linked to the GitHub repository"
-[#image-4]: ./images/MAUI.PNG "Configuration required for MAUI apps development"
-[#image-5]: ./images/LinkingRepository.PNG "Cloning GitHub repo by copying the link"
-[#image-6]: ./images/VS_repository.PNG "Visual Studio options for cloning a repository"
+[image1]: ./images/Repository_My_access_Github.PNG "Screenshot of the main page of the group project repository"
+[image2]: ./images/github_project_task_board.PNG "Our project Task Board"
+[image3]: ./images/vs_cloned.PNG "Proof of my instance of VS code being linked to the GitHub repository"
+[image4]: ./images/MAUI.PNG "Configuration required for MAUI apps development"
+[image5]: ./images/LinkingRepository.PNG "Cloning GitHub repo by copying the link"
+[image6]: ./images/VS_repository.PNG "Visual Studio options for cloning a repository"
