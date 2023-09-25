@@ -4,13 +4,15 @@
 
 ### Our Task Workflow 
 We have decided to create a workflow that will divide the process into 7 stages as on the [Figure 1].  In this section I describe the steps I took to complete the development work using our workflow. 
-![Figure 1](./images/Workflow)
+
+![Figure 1](./images/Workflow.PNG)
 *Figure 1: Team workflow with description of each step*
 
 ### Accepting a task 
 
 My first task was to accept a ticket from the board, to do that I have clicked on the issue within our Kanaban board as highlighted in blue on the [Figure 2]
-![Figure 2](./images/Assign)
+
+![Figure 2](./images/Assign.PNG)
 *Figure 2: Tasks in "To do " column on the Kanban board and a Task Details Page* 
 
 This action opens details page of the task, to assign a task to myself I had to click assign as highlighted in red on the the [Figure 2]. 
@@ -18,19 +20,20 @@ This action opens details page of the task, to assign a task to myself I had to 
 
 I created a feature branch as per the flow. This is a common practice that works with creating pull requests, which help with reviewing the commited code. 
 To create a branch based on main in Visual Studio I have opened Visual Studio and from the top menu selected "git" then "new branch". This opened a pop up as on the [Figure 3] which allowed me to specify the branch name and reuse the code of the main branch. 
-![Figure 3](./images/BranchCreation)
+![Figure 3](./images/BranchCreation.PNG)
 *Figure 3: Branch creation popup in Visual Studio* 
 
 ### Updating task information
 I have updated the task description on the details page to give more information about what my ticket entails. To complete that I clicked the "edit" text as can be seen on higlighted in yellow on the [Figure 2]. 
 The updated description of my task can be seen on the [Figure 4]. 
-![Figure 4](./images/Updated_Ticket)
+
+![Figure 4](./images/Updated_Ticket.PNG)
 *Figure 4: Ticket with added description and acceptance criteria* 
 
 ### Developing soulution 
 My task was maintain reference values for organisation types - after refining the ticket and discussing what exactly needs to be done I narrowed down the requirements to allowing users to create, delete, update and view the organisation within the UI. To prepare for this task I have watch several tutorial videos on MAUI app development, this gave me a good base when working on the solution. I have encountered some issues with xaml markup specifically with binding data but thanks to resources such as stack overflow and Microsoft documentation I was able to find solutions to my problems.During my developement I commited changes to my branch and gave each commit a meaningful title as per [Figure 5] After thorough manual tests of my application and check with Definition of Done(https://github.com/xinjoonha/SET09102_PURPLE/blob/main/Documentation/DoD)  I was happy to progress the task from In Progress to In Review. 
 
-![Figure 5](./images/CommitsHistory)
+![Figure 5](./images/CommitsHistory.PNG)
 *Figure 5: History of commits for my branch* 
 
 ### Updating Task Board 
@@ -39,19 +42,18 @@ Updating the task board was an easy process this can be done in few ways but the
 ### Making a pull request
 Once I completed my work on the feature branch I have created the pull request to facilitate the discussion on the code I created. To create a pull request(PR) I have clicked Pull requests from the repositorty github page, marked in blue on the [Figure 6] and then I clicked "new pull request" marked in red.
 
-![Figure 6](./images/prCreation)
+![Figure 6](./images/prCreation.PNG)
 *Figure 6: Creating a pull request part one* 
 
 After that I was presented with a screen where I could select which branches would be considered in pull request as per the example in [Figure 7]. Our policy dictates that the feature branches are merged into the main. I have selected branches so that my feature branch merges into master once the PR is completed. 
 
-![Figure 7](./images/prCreation2)
+![Figure 7](./images/prCreation2.PNG)
 *Figure 7: Branch selection screen for pull requests* 
 
 After creating the pull request I was presented with a screen that allowed me to add description of changes as per the [Figure 8]. This is also the page where the discussion about my work happens. This is where my branch awaited comments and approvals and based on those the ticket will flow in either direction.
-![Figure 8](./images/PR)
-*Figure 8: Pull request view* 
 
-**DO**
+![Figure 8](./images/PR.PNG)
+*Figure 8: Pull request view* 
 
 ## Reflection
 
@@ -73,11 +75,11 @@ I have realised that my commit comments could be more descriptive. This could he
 
 The task board set up seems straightforward and it allow for some manual sanity testing before the pull request is completed. We decided that each PR needs at least 3 approvals which should in theory increase chances of finding bugs within the code and improve the quality of software. 
 
-[Figure 1]: ./images/Workflow "Figure 1"
-[Figure 2]: ./images/Assing "Figure 2"
+[Figure 1]: ./images/Workflow.PNG "Figure 1"
+[Figure 2]: ./images/Assing.PNG "Figure 2"
 [Figure 3]: ./images/BranchCreation.PNG "Figure 3"
-[Figure 4]: ./images/Updated_Ticket "Figure 4"
-[Figure 5]: ./images/CommitsHistory "Figure 5"
-[Figure 6]: ./images/prCreation "Figure 6"
-[Figure 7]: ./images/prCreation2 "Figure 7"
-[Figure 8]: ./images/PR "Figure 8"
+[Figure 4]: ./images/Updated_Ticket.PNG "Figure 4"
+[Figure 5]: ./images/CommitsHistory.PNG "Figure 5"
+[Figure 6]: ./images/prCreation.PNG "Figure 6"
+[Figure 7]: ./images/prCreation2.PNG "Figure 7"
+[Figure 8]: ./images/PR.PNG "Figure 8"
