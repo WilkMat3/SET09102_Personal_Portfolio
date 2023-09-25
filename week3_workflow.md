@@ -3,7 +3,8 @@
 ## Task workflow
 
 ### Our Task Workflow 
-We have decided to create a workflow that will divide the process into 7 stages as on the [Figure 1].  In this section I describe the steps I took to complete the development work using our workflow. 
+
+We have decided to create a workflow that will divide the process into 7 stages, as on the [Figure 1].  In this section, I describe steps I took to complete the development work using our workflow. 
 
 ![Figure 1](./images/Workflow.PNG)
 
@@ -11,23 +12,26 @@ We have decided to create a workflow that will divide the process into 7 stages 
 
 ### Accepting a task 
 
-My first task was to accept a ticket from the board, to do that I have clicked on the issue within our Kanaban board as highlighted in blue on the [Figure 2]
+My first task was to accept a ticket from the board to do that, I clicked on the issue within our Kanaban board, as highlighted in blue on the [Figure 2]
 
 ![Figure 2](./images/Assign.PNG)
 
 *Figure 2: Tasks in "To do " column on the Kanban board and a Task Details Page* 
 
-This action opens details page of the task, to assign a task to myself I had to click assign as highlighted in red on the the [Figure 2]. 
+This action opens the details page of the task to assign a task to myself. I had to click "assign", as highlighted in red on the [Figure 2] and select my account from the dropdown list. 
+
 ### Creating Feature Branch
 
-I created a feature branch as per the flow. This is a common practice that works with creating pull requests, which help with reviewing the commited code. 
-To create a branch based on main in Visual Studio I have opened Visual Studio and from the top menu selected "git" then "new branch". This opened a pop up as on the [Figure 3] which allowed me to specify the branch name and reuse the code of the main branch. 
+As part of our standard workflow, I followed the common practice of creating a feature branch, which is useful in facilitating the code review process through pull requests.
+To create the feature branch, I initiated the process in Visual Studio. I navigated to the 'git' menu at the top and selected the 'new branch' option. This action triggered a pop-up window, as shown in [Figure 3]. Within this window, I had the opportunity to define the branch name and choose to base it on the existing code from the main branch. This approach allowed for a clean and organized development process.
+
 ![Figure 3](./images/BranchCreation.PNG)
 
 *Figure 3: Branch creation popup in Visual Studio* 
 
 ### Updating task information
-I have updated the task description on the details page to give more information about what my ticket entails. To complete that I clicked the "edit" text as can be seen on higlighted in yellow on the [Figure 2]. 
+
+I updated the task description on the details page to provide more accurate information about my ticket. To achieve this, I simply clicked on the 'edit' option, which is highlighted in yellow in [Figure 2].
 The updated description of my task can be seen on the [Figure 4]. 
 
 ![Figure 4](./images/Updated_Ticket.PNG)
@@ -35,29 +39,41 @@ The updated description of my task can be seen on the [Figure 4].
 *Figure 4: Ticket with added description and acceptance criteria* 
 
 ### Developing soulution 
-My task was maintain reference values for organisation types - after refining the ticket and discussing what exactly needs to be done I narrowed down the requirements to allowing users to create, delete, update and view the organisation within the UI. To prepare for this task I have watch several tutorial videos on MAUI app development, this gave me a good base when working on the solution. I have encountered some issues with xaml markup specifically with binding data but thanks to resources such as stack overflow and Microsoft documentation I was able to find solutions to my problems.During my developement I commited changes to my branch and gave each commit a meaningful title as per [Figure 5] After thorough manual tests of my application and check with Definition of Done(https://github.com/xinjoonha/SET09102_PURPLE/blob/main/Documentation/DoD)  I was happy to progress the task from In Progress to In Review. 
+
+My task was to maintain reference values for organisation types. After refining the ticket and discussing my task, I narrowed down the requirements to allow users to create, delete, update and view the organisation within the UI. 
+To prepare for this task, I proactively studied several tutorial videos on MAUI app development. This foundational knowledge proved invaluable as I began working on the solution. During the development process, I encountered some challenges with XAML markup, particularly related to data binding. Fortunately, I leveraged external resources such as Stack Overflow and official Microsoft documentation to find effective solutions to these issues.
+Throughout my development work, I diligently committed changes to my branch, providing each commit with a meaningful and descriptive title, as shown in the [Figure 5].
+After completing the coding phase, I thoroughly tested my application.  
+Then I revisited the Definition of Done([DoD][https://github.com/xinjoonha/SET09102_PURPLE/blob/main/Documentation/DoD]) to ensure that all criteria were met. Only after I progressed the task to the In Review Column.
+
 
 ![Figure 5](./images/CommitsHistory.PNG)
 
 *Figure 5: History of commits for my branch* 
 
 ### Updating Task Board 
-Updating the task board was an easy process this can be done in few ways but the easiest is to drag and drop an item to a desired column, as I have done with my ticket. Another way of doing it is updating "status" in the ticket details which can be seen on the right side of the [Figure 2]. I only moved my ticket from "To do" column to "In Development" when I assigned the task and started working on it. Once my code fulfilled acceptance criteria and the Definition of Donethen I moved my task to "In Review" column(which can aslo be seen on the [Figure 2]). Tasks move between columns as the development process progresses. If during review an issues is found withing the code the task moves back to in progress and the process repeats. Our finall column before Done is Testing which is dedicated to the manual testing of the application, during that time defects could be found that would send the ticket back to the in progress column. 
+
+Updating the task board is a straightforward process, offering multiple methods to achieve the desired results. Among these methods, the simplest involves a quick drag-and-drop action to relocate an item to the desired column, as I have done when working on my ticket. Alternatively, you can update the 'status' within the ticket details, which is located on the right side of [Figure 2] within ticket details.
+
+I moved my ticket from the 'To Do' column to 'In Development' when I took ownership of the task and started work. After completing the code, ensuring it met the acceptance criteria and the Definition of Done, I moved my task to the 'In Review' column, a step also visible in [Figure 2].
+
+The movement of tasks across columns reflects the progression of the development process. If any issues are identified during the code review, the task is returned to the 'In Progress' column, initiating a repeat of the process. Our final column before reaching 'Done' is 'Testing,' dedicated to manual testing of the application. During this phase, any defects detected may prompt the return of the ticket to the 'In Progress' column for further development.
 
 ### Making a pull request
-Once I completed my work on the feature branch I have created the pull request to facilitate the discussion on the code I created. To create a pull request(PR) I have clicked Pull requests from the repositorty github page, marked in blue on the [Figure 6] and then I clicked "new pull request" marked in red.
+
+Once I completed my work on the feature branch, I created the pull request to facilitate the discussion on the code I created. To create a pull request(PR), I clicked Pull requests from the repository GitHub page, marked in blue on the [Figure 6], and then I clicked "new pull request" marked in red.
 
 ![Figure 6](./images/prCreation.PNG)
 
 *Figure 6: Creating a pull request part one* 
 
-After that I was presented with a screen where I could select which branches would be considered in pull request as per the example in [Figure 7]. Our policy dictates that the feature branches are merged into the main. I have selected branches so that my feature branch merges into master once the PR is completed. 
+After that, I was presented with a screen where I could select which branches would be considered for the PR as per the example in [Figure 7]. Our policy dictates that the feature branches are merged into the main. I have selected branches so that my feature branch merges into the master once the PR is completed.  
 
 ![Figure 7](./images/prCreation2.PNG)
 
 *Figure 7: Branch selection screen for pull requests* 
 
-After creating the pull request I was presented with a screen that allowed me to add description of changes as per the [Figure 8]. This is also the page where the discussion about my work happens. This is where my branch awaited comments and approvals and based on those the ticket will flow in either direction.
+After creating the PR, I was presented with a screen that allowed me to add description of changes as per the [Figure 8]. This is also the page where the discussion about my work happens and  where my branch awaited comments and approvals.
 
 ![Figure 8](./images/PR.PNG)
 
@@ -66,22 +82,22 @@ After creating the pull request I was presented with a screen that allowed me to
 ## Reflection
 
 ### Challenges
-Technology changes all the time and some information that I have obtained in tutorials was outdated which resulted in more time spend debugging issues and finding solutions. No one in my group has expirence with MAUI and I could not find help easily. To combat that I should spend more time researching MAUI application development and spend more time reading documentation. 
 
-I have found that the Visual studio does not have built in viewer for the SQL Lite database but after some research I found an extension that allowed me to view changes to the database while running the application. I have shared that with the team to aid them in the development proccess.
+Technology changes all the time and some information that I have obtained in tutorials was outdated which resulted in more time spent debugging issues and finding solutions. No one in my group has experience with MAUI and I could not find help easily. To combat that I should spend more time researching MAUI application development and spend more time reading documentation. 
 
-The code I created is not well suited for unit testing and according to best practice it should be the integration testing that checks CRUD methods on the database. I still have to fully explore integration testing to be able to do it correctly and according to best practice. 
+I have found that the Visual Studio does not have a built-in viewer for the SQL Lite database but after some research, I found an extension that allowed me to view changes to the database while running the application. I have shared that with the team to aid them in the development process.
 
+The code I created is not well suited for unit testing and according to best practice, it should be the integration testing that checks CRUD methods on the database. I still have to fully explore integration testing to be able to implement it correctly. 
 
 ### Possible improvements
 
-The process we currently have is good but we have not refined tickets as a team. We accepted the issues the way they were but no looked into each ticket to decide if the given description is accurate. This is something that we should consider doing at least in a smaller group in order to define the necessary work better.
+The process we currently have is adequate, but we have not refined tickets as a team. We accepted the issues the way they were but did not look into each ticket to decide if the given description was accurate. This is something that we should consider doing at least in a smaller group in order to define the necessary work better.
 
-I have realised that my commit comments could be more descriptive. This could help the team to figure out when and what changes were made whenever a revert is needed. I could also see the point of commiting more often. 
+I have realised that my commit comments could be more descriptive. This could help the team figure out when and what changes were made whenever a revert is needed. I could also see the point of committing more often as it is useful to be able to revert code in small batches. 
 
-### Postives
+### Strengths
 
-The task board set up seems straightforward and it allow for some manual sanity testing before the pull request is completed. We decided that each PR needs at least 3 approvals which should in theory increase chances of finding bugs within the code and improve the quality of software. 
+The task board set-up seems straightforward and accomodates quality assurance work before the pull request is completed. We decided that each PR needs at least 3 approvals which should increase the chances of finding bugs within the code and improve the quality of software.
 
 [Figure 1]: ./images/Workflow.PNG "Figure 1"
 [Figure 2]: ./images/Assing.PNG "Figure 2"
