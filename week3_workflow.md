@@ -4,7 +4,7 @@
 
 ### Our Task Workflow 
 
-We have decided to create a workflow that will divide the process into 7 stages, as on the [Figure 1].  In this section, I describe steps I took to complete the development work using our workflow. 
+We have decided to create a workflow that will divide the process into 7 stages, as on the [Figure 1](https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Workflow.PNG ).  In this section, I describe steps I took to complete the development work using our workflow. 
 
 ![Figure 1](./images/Workflow.PNG)
 
@@ -99,11 +99,18 @@ I have realised that my commit comments could be more descriptive. This could he
 
 The task board set-up seems straightforward and accomodates quality assurance work before the pull request is completed. We decided that each PR needs at least 3 approvals which should increase the chances of finding bugs within the code and improve the quality of software.
 
-[Figure 1]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Workflow.PNG"Figure 1"
+[Figure 1]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Workflow.PNG "Figure 1"
+
 [Figure 2]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Assign.PNG "Figure 2"
+
 [Figure 3]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/BranchCreation.PNG "Figure 3"
+
 [Figure 4]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Updated_Ticket.PNG "Figure 4"
+
 [Figure 5]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/CommitsHistory.PNG "Figure 5"
+
 [Figure 6]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/prCreation.PNG "Figure 6"
+
 [Figure 7]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/prCreation2.PNG "Figure 7"
+
 [Figure 8]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/PR.PNG "Figure 8"
