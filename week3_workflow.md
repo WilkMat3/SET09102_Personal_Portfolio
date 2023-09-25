@@ -44,7 +44,7 @@ My task was to maintain reference values for organisation types. After refining 
 To prepare for this task, I proactively studied several tutorial videos on MAUI app development. This foundational knowledge proved invaluable as I began working on the solution. During the development process, I encountered some challenges with XAML markup, particularly related to data binding. Fortunately, I leveraged external resources such as Stack Overflow and official Microsoft documentation to find effective solutions to these issues.
 Throughout my development work, I diligently committed changes to my branch, providing each commit with a meaningful and descriptive title, as shown in the [Figure 5].
 After completing the coding phase, I thoroughly tested my application.  
-Then I revisited the Definition of Done([DoD][https://github.com/xinjoonha/SET09102_PURPLE/blob/main/Documentation/DoD]) to ensure that all criteria were met. Only after I progressed the task to the In Review Column.
+Then I revisited the Definition of Done ([DoD]) to ensure that all criteria were met. Only after I progressed the task to the In Review Column.
 
 
 ![Figure 5](./images/CommitsHistory.PNG)
@@ -114,3 +114,5 @@ The task board set-up seems straightforward and accomodates quality assurance wo
 [Figure 7]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/prCreation2.PNG "Figure 7"
 
 [Figure 8]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/PR.PNG "Figure 8"
+
+[DoD]: https://github.com/xinjoonha/SET09102_PURPLE/blob/main/Documentation/DoD
