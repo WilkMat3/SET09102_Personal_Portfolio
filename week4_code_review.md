@@ -28,7 +28,6 @@ The *Login* method name is probably not the most suitable as the actual method c
 The DRY principle is violated becaues of the way the return statement is written. 
 
 ## The Solution
-
 ```
  public class User
     {
@@ -77,7 +76,6 @@ To prevent extra parameters being passed, I have encapsulated the data passed in
 I have change the *Login* mehtod name to better describe what it actually does. Martin(2010) writes about selecting intention revealing names and *IsPasswordValid* name is better at describing what the method tries to accomplish.
 I have extracted a method from the previous *Login* method to reduce access to the data within the *User* object. 
 To abide the DRY principle, I removed two *return* statements from the *Login* methods and refactored them into one line, to improve readbility of the code. 
-
 
 ## References
 Alls, J. (2020). Writing Clean Functions - Clean Code in C# [Book]. Retrieved September 27, 2023, from www.oreilly.com website: https://learning.oreilly.com/library/view/clean-code-in/9781838982973/87ecc9d9-a240-4058-ac19-4921da271303.xhtml#uuid-0a990568-6e52-49a8-8ad0-748587f1b9bf
