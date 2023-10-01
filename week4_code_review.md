@@ -24,7 +24,7 @@ public bool Login(string username, string password){
 Looking at the *Register* method we can see that it saves the user to the database but before that it calls a method to generate a salt and hashes the password with that salt. The call to save the user data to the database has three parameters and according to Alls(2020), methods preferably should have less than 3 parameters. 
 
 The *Login* method can access the *User* object along with the salt parameter, but this does not encapsulate the data and leaves the details of the object exposed.
-The *Login* method name is probably not the most suitable as the actual method compares two variables and returns a boolean. 
+The *Login* method name is probably not the most suitable as the actual method compares two variables and returns a boolean instead of preforming a login action. 
 The DRY principle is violated becaues of the way the return statement is written. 
 
 ## The Solution
