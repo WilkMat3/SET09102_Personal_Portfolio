@@ -78,7 +78,7 @@ I have extracted a method from the previous *Login* method to reduce access to t
 To abide by the DRY principle, I removed two *return* statements from the *Login* methods and refactored them into one line, to improve the readbility of the code. 
 
 ## References
-Alls, J. (2020). Writing Clean Functions - Clean Code in C# [Book]. Retrieved September 27, 2023, from www.oreilly.com website: https://learning.oreilly.com/library/view/clean-code-in/9781838982973/87ecc9d9-a240-4058-ac19-4921da271303.xhtml#uuid-0a990568-6e52-49a8-8ad0-748587f1b9bf
+Alls, J. (2020). Clean Code in C#. Packt Publishing Ltd.
 
 Martin, R. C. (2010). Clean code a handbook of agile software craftmanship. Upper Saddle River [Etc.] Prentice Hall.
 ‌
