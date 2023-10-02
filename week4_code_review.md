@@ -57,23 +57,44 @@ The DRY principle is violated because of the way the return statement is written
             Password = Encryptor.HashPassword(password,Salt);
         }
     }
---------------------------------------------------------------------------------------------------------
-        // rest of the class omitted for brevity
+```
+*Challenge 4 Authentication Solution - User Class* 
+
+
+```
+    public class Program
+    {
+
+        public static string HashPassword(string password, string salt)
+        {
+            // implementation for hashing password
+        }
+        public static string CreateSalt()
+        {
+            // implementation for creating salt
+        }
 
         public void Register(string username, string password)
         {
-            SaveToDatabase(new User(username, password)); 
+            SaveToDatabase(new User(username, password));
         }
 
-        public bool IsPasswordValid(string username, string password){
+        public bool IsPasswordValid(string username, string password)
+        {
+            var user = GetUserFromDatabase(username);
 
-            return GetUserFromDatabase(username).ValidateUserPassword(password); 
+            return user.ValidateInputPassword(password);
         }
+    }
 ```
-*Challenge 4 Authentication - Solution* 
 
-To prevent extra parameters from being passed, I have encapsulated the data passed in the *SaveToDatabase* method into a *User* object. I have also removed password hashing from both the *Login* and *Register* methods. The *User* object data now is exposing methods not data, thus following best practice on encapsulation (Alls,2020). I followed it up by assigning *salt* and hashing the password within the constructor of the *User* object, as those details should not be exposed unless required.
-I have changed the *Login* method name to better describe what it actually does. Martin(2010) writes about selecting intention-revealing names and the *IsPasswordValid* name is better at describing what the method tries to accomplish.
+*Challenge 4 Authentication Solution - Program class* 
+
+### Register mehthod changes
+To prevent extra parameters from being passed, I have encapsulated the data passed in the *SaveToDatabase* method into a *User* object. I have also removed password hashing from both the *Login* and *Register* methods. The *User* object data now is exposing methods not data, thus following best practice on encapsulation (Alls,2020). I followed it up by assigning *salt* and hashing the password within the constructor of the *User* object, as those details do not need to be exposed to the Program class.
+
+### Login method changes
+I have changed the *Login* method name to better describe what it actually does. Martin(2010) writes about selecting intention-revealing names, and the *IsPasswordValid* name is better at describing what the method tries to accomplish.
 I have extracted a method from the previous *Login* method to reduce access to the data within the *User* object. 
 To abide by the DRY principle, I removed two *return* statements from the *Login* methods and refactored them into one line, to improve the readbility of the code. 
 
