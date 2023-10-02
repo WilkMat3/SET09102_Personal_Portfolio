@@ -95,7 +95,7 @@ To prevent extra parameters from being passed, I have encapsulated the data pass
 
 ### Login method changes
 I have changed the *Login* method name to better describe what it actually does. Martin(2010) writes about selecting intention-revealing names, and the *IsPasswordValid* name is better at describing what the method tries to accomplish.
-I have extracted a method from the previous *Login* method to reduce access to the data within the *User* object. 
+I have extracted a method from the previous *Login* method to reduce access to the data within the *User* object. The *AssignPassword* method within the *User* class handels the check for validity of the password without the need to expose hashed password to the Program class. 
 To abide by the DRY principle, I removed two *return* statements from the *Login* methods and refactored them into one line, to improve the readbility of the code. 
 
 ## References
