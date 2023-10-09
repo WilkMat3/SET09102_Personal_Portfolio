@@ -249,6 +249,7 @@ public partial class OrganisationEditPage : ContentPage
 <a name="Figure_4"></a>
 
 ### Code after
+<a name="Figure_5"></a>
 ```
 using Undac.Models;
 
@@ -696,6 +697,7 @@ public partial class OrganisationAddPage : ContentPage
 *Figure 15: Add Page - Before DRY refactor highlighted repeating code*
 
 ### Code after
+<a name="Figure_16"></a>
 ```
 namespace Undac.Helpers
 {
@@ -712,9 +714,9 @@ namespace Undac.Helpers
 ```
 
 *Figure 16: New class InputValidator - after DRY refactor* 
-<a name="Figure_16"></a>
 
 
+<a name="Figure_17"></a>
 ```
 using Undac.Helpers;
 using Undac.Models;
@@ -761,7 +763,7 @@ public partial class OrganisationAddPage : ContentPage
 ```
 
 *Figure 17: OrganisationAddPage Class - after DRY refactor* 
-<a name="Figure_17"></a>
+
 
 
 ```
@@ -1323,8 +1325,13 @@ Creating a good documentation allows users and other developers to understand th
 ### Meaningful Names 
 By changing variable name to something that describes its role better I was able to remove a comment describing the role of the variable. 
 The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11](#Figure_11)
-### Extracting Method to improve code readability 
+
 ### Obvious comments
+On the [Figure 5](#Figure_5) in the *CancelButton_Clicked* there is a comment before *await Navigation.PopAsync();* which seems reduntant as the function call is simple and the method name is descriptive. This means that the comments states the obvious and it is not required for anything. The version of this code witout a comment can be seen on the [Figure 11](#Figure_11).
+
+### Extracting Method to improve code readability  
+On the [Figure 16](#Figure_16) I have introduced a new class which also contribiuted toward removing comments from the code within the *SaveButton_Clicked* method. The[Figure 17](#Figure_17) shows how adding a call with a descriptive function name makes the comment describing functionality redundant. 
+
 
 ## References
 Alls, J. (2020). Clean Code in C#. Packt Publishing Ltd.
