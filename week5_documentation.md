@@ -1265,12 +1265,12 @@ namespace Undac.Models
     }
 }
 ```
-*Figure 28: AddPage with xml comments* 
+*Figure 28: Model page with xml comments* 
 
 
 ![Figure 29](./images/OrgModelHTML.PNG)
 
-*Figure 29: AddPage Doxygen HTML view* 
+*Figure 29: Organisation Class in Doxygen HTML view* 
 
 
 ### Structure
@@ -1281,7 +1281,7 @@ The HTML view of Doxygen contains all the information contained in the XML comme
 
 ![Figure 30](./images/ClassViewHTML.PNG)
 
-*Figure 30: Class Doxygen HTML view* 
+*Figure 30: Class List Doxygen HTML view* 
 
 ### Purpose
 
