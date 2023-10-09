@@ -92,6 +92,7 @@ public partial class OrganisationEditPage : ContentPage
 
 ```
 *Figure 1: Edit Page - code fromw week 3* 
+<a name="Figure_1"></a>
 
 ### Code after
 
@@ -157,7 +158,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 2: Edit Page - code from week 5 after naming refactor* 
-
+<a name="Figure_2"></a>
 ![Figure 3](./images/NamingChanges.PNG)
 
 *Figure 3: Edit Page - screenshot from week 5 after naming refactor* 
@@ -243,7 +244,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 4: Edit Page - code before vertical spacing refactor* 
-
+<a name="Figure_4"></a>
 ### Code after
 ```
 using Undac.Models;
@@ -301,7 +302,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 5: Edit Page - code from week 5 after vertical spacing refactor* 
-
+<a name="Figure_5"></a>
 ![Figure 6](./images/SpacingChanges.PNG)
 
 *Figure 6: Edit Page - screenshot from week 5 after spacing refactor* 
@@ -377,7 +378,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 7: Edit Page - code before comments changes* 
-
+<a name="Figure_7"></a>
 ### Code after
 ```
 using Undac.Models;
@@ -435,7 +436,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 8: Edit Page - code from week 5 after comments changes* 
-
+<a name="Figure_8"></a>
 ![Figure 9](./images/CommentsChanges.PNG)
 
 ### Explanation
@@ -504,7 +505,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 10: Edit Page - before KISS refactor* 
-
+<a name="Figure_10"></a>
 ### Code after
 ```
 using Undac.Models;
@@ -560,7 +561,7 @@ public partial class OrganisationEditPage : ContentPage
 
 ```
 *Figure 11: Edit Page - after KISS refactor* 
-
+<a name="Figure_11"></a>
 ![Figure 12](./images/KISS.PNG)
 
 ### Explanation
@@ -626,7 +627,7 @@ public partial class OrganisationEditPage : ContentPage
 }
 ```
 *Figure 12: Edit Page - Before DRY refactor* 
-
+<a name="Figure_12"></a>
 
 ```
 using Undac.Models;
@@ -674,7 +675,7 @@ public partial class OrganisationAddPage : ContentPage
 }
 ```
 *Figure 13: Add Page - Before DRY refactor*
-
+<a name="Figure_13"></a>
 ![Figure 14](./images/DRYBefore.PNG)
 
 ### Code after
@@ -694,7 +695,7 @@ namespace Undac.Helpers
 ```
 
 *Figure 15: New class InputValidator - after DRY refactor* 
-
+<a name="Figure_15"></a>
 
 ```
 using Undac.Helpers;
@@ -742,7 +743,7 @@ public partial class OrganisationAddPage : ContentPage
 ```
 
 *Figure 16: OrganisationAddPage Class - after DRY refactor* 
-
+<a name="Figure_16"></a>
 
 ```
 using Undac.Helpers;
@@ -799,7 +800,7 @@ public partial class OrganisationEditPage : ContentPage
 ```
 
 *Figure 17: OrganisationEditPage Class - after DRY refactor* 
-
+<a name="Figure_17"></a>
 
 ### Explanation
 My OrganisationEditPage and OrganisationAddPage classes are reusing the same code. On the [Figure 14] I have highlighted areas of the code that violate DRY principle. 
@@ -872,7 +873,7 @@ namespace Undac.Data
 }
 ```
 *Figure 18: Generic class for database access* 
-
+<a name="Figure_18"></a>
 ### Explanation
 
 While working on my ticket I decided to create a class that would possibly simplify the process of saving items to the database and reduce code needed to implement saving various models to the database.
@@ -972,7 +973,7 @@ namespace Undac.Data
 
 ```
 *Figure 19: Database Access layer with xml comments* 
-
+<a name="Figure_19"></a>
 
 ![Figure 20](./images/UndacCommentsHTML.PNG)
 
@@ -1062,7 +1063,7 @@ namespace Undac.Views.Admin
 }
 ```
 *Figure 21: OrganisationPage with xml comments* 
-
+<a name="Figure_21"></a>
 
 ![Figure 22](./images/OrganisationPageHTML.PNG)
 
@@ -1139,7 +1140,7 @@ namespace Undac.Views.Admin
 
 ```
 *Figure 23: EditPage with xml comments* 
-
+<a name="Figure_23"></a>
 
 ![Figure 24](./images/EditPageHTML.PNG)
 
@@ -1207,7 +1208,7 @@ namespace Undac.Views.Admin
 
 ```
 *Figure 25: AddPage with xml comments* 
-
+<a name="Figure_25"></a>
 
 ![Figure 26](./images/AddPageHTML.PNG)
 
@@ -1238,7 +1239,7 @@ namespace Undac.Models
 }
 ```
 *Figure 27: AddPage with xml comments* 
-
+<a name="Figure_27"></a>
 
 ![Figure 28](./images/OrgModelHTML.PNG)
 
@@ -1258,10 +1259,45 @@ The HTML view of Doxygen contains all the information contained in the XML comme
 Creating a good documentation allows users and other developers to understand the software better. Doxygen provides easy to use HTML format that can even generate class diagrams and map inhearitance. The organised nature of this soultion is great for reducing the learning curve for the code maintainers. 
 
 ## Eliminating comments
+```
+    private async void SaveButton_Clicked(object sender, EventArgs e)
+    {
 
-### 1
-### 2
-### 3
+
+        string Name1 = NameEntry.Text?.Trim(); // Trim leading/trailing whitespace
+        if (string.IsNullOrEmpty(Name1))
+        {
+            await DisplayAlert("Error", "Organization name cannot be empty.", "OK");
+            return; // Do not save if the input name is empty name is empty
+        }
+        else if (!string.Equals(Name1, EditingOrganisation.Name, StringComparison.OrdinalIgnoreCase))
+        {
+            // Check if an organization with the same name already exists in the database
+            var org = await App.Database.GetOrganisationAsync(Name1);
+            if (org != null)
+            {
+                await DisplayAlert("Error", "An organization with the same name already exists.", "OK");
+                return; // Do not save if a duplicate organization name is found
+            }
+            else
+            {
+                await App.Database.DeleteOrganisationAsync(EditingOrganisation);
+                // Update the properties of the EditingOrganisation
+                EditingOrganisation.Name = Name1;
+                await App.Database.SaveOrganisationAsync(EditingOrganisation); // Update in the database
+                                                                               // Navigate back to the OrganisationPage after saving
+                await Navigation.PopAsync();
+            }
+        
+
+        }
+    }
+```
+### Meaningful Names 
+By changing variable name to something that describes its role better I was able to remove a comment describing the role of the variable. 
+The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11]
+### Extracting Method to improve code readability 
+### Obvious comments
 
 ## References
 Alls, J. (2020). Clean Code in C#. Packt Publishing Ltd.
