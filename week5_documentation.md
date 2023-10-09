@@ -1288,40 +1288,7 @@ The HTML view of Doxygen contains all the information contained in the XML comme
 Creating a good documentation allows users and other developers to understand the software better. Doxygen provides easy to use HTML format that can even generate class diagrams and map inhearitance. The organised nature of this soultion is great for reducing the learning curve for the code maintainers. 
 
 ## Eliminating comments
-```
-    private async void SaveButton_Clicked(object sender, EventArgs e)
-    {
 
-
-        string Name1 = NameEntry.Text?.Trim(); // Trim leading/trailing whitespace
-        if (string.IsNullOrEmpty(Name1))
-        {
-            await DisplayAlert("Error", "Organization name cannot be empty.", "OK");
-            return; // Do not save if the input name is empty name is empty
-        }
-        else if (!string.Equals(Name1, EditingOrganisation.Name, StringComparison.OrdinalIgnoreCase))
-        {
-            // Check if an organization with the same name already exists in the database
-            var org = await App.Database.GetOrganisationAsync(Name1);
-            if (org != null)
-            {
-                await DisplayAlert("Error", "An organization with the same name already exists.", "OK");
-                return; // Do not save if a duplicate organization name is found
-            }
-            else
-            {
-                await App.Database.DeleteOrganisationAsync(EditingOrganisation);
-                // Update the properties of the EditingOrganisation
-                EditingOrganisation.Name = Name1;
-                await App.Database.SaveOrganisationAsync(EditingOrganisation); // Update in the database
-                                                                               // Navigate back to the OrganisationPage after saving
-                await Navigation.PopAsync();
-            }
-        
-
-        }
-    }
-```
 ### Meaningful Names 
 By changing variable name to something that describes its role better I was able to remove a comment describing the role of the variable. 
 The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11](#Figure_11)
@@ -1330,7 +1297,7 @@ The initial state can be seen on the [Figure 1](#Figure_1) where I used abbrevia
 On the [Figure 5](#Figure_5) in the *CancelButton_Clicked* there is a comment before *await Navigation.PopAsync();* which seems reduntant as the function call is simple and the method name is descriptive. This means that the comments states the obvious and it is not required for anything. The version of this code witout a comment can be seen on the [Figure 11](#Figure_11).
 
 ### Extracting Method to improve code readability  
-On the [Figure 16](#Figure_16) I have introduced a new class which also contribiuted toward removing comments from the code within the *SaveButton_Clicked* method. The[Figure 17](#Figure_17) shows how adding a call with a descriptive function name makes the comment describing functionality redundant. 
+On the [Figure 16](#Figure_16) I have introduced a new class which also contribiuted toward removing comments from the code within the *SaveButton_Clicked* method. The [Figure 17](#Figure_17) shows how adding a call with a descriptive function name makes the comment describing functionality redundant. 
 
 
 ## References
@@ -1347,11 +1314,11 @@ Microsoft (Ed.). (2023b, June 15). C# Coding Conventions. Retrieved October 5, 2
 [Figure 3]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/NamingChanges.png "Figure 3"
 [Figure 6]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/SpacingChange.PNG "Figure 6"
 [Figure 9]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/CommentsChange.png "Figure 9"
-[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Kiss.png "Figure 13"
-[Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/DRYBefore.png "Figure 15"
-[Figure 20]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/UndacCommentsHTML.PNG "Figure 16"
-[Figure 22]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrganisationPageHTML.PNG "Figure 23"
-[Figure 24]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/EditPageHTML.PNG "Figure 25"
-[Figure 26]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/AddPageHTML.PNG "Figure 27"
-[Figure 28]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrgModelHTML.PNG "Figure 29"
-[Figure 29]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/ClassViewHTML.PNG "Figure 30"
+[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS.png "Figure 12"
+[Figure 15]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/DRYBefore.png "Figure 15"
+[Figure 21]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/UndacCommentsHTML.PNG "Figure 21"
+[Figure 23]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrganisationPageHTML.PNG "Figure 23"
+[Figure 25]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/EditPageHTML.PNG "Figure 25"
+[Figure 27]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/AddPageHTML.PNG "Figure 27"
+[Figure 29]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrgModelHTML.PNG "Figure 29"
+[Figure 30]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/ClassViewHTML.PNG "Figure 30"
