@@ -439,7 +439,10 @@ public partial class OrganisationEditPage : ContentPage
 ```
 *Figure 8: Edit Page - code from week 5 after comments changes* 
 <a name="Figure_8"></a>
-![Figure 9](./images/CommentsChanges.PNG)
+
+![Figure 9](./images/CommentsChange.png)
+
+*Figure 8: Edit Page - code from week 5 after comments changes* 
 
 ### Explanation
 I have decided to remove all comments but one. As highlighted on the [Figure 9], I have moved a comment to a separate line and changed it, so it amplifies why this line is so important. 
@@ -1318,7 +1321,7 @@ Microsoft (Ed.). (2023b, June 15). C# Coding Conventions. Retrieved October 5, 2
 
 [Figure 3]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/NamingChanges.png "Figure 3"
 [Figure 6]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/SpacingChange.PNG "Figure 6"
-[Figure 9]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/CommentsChanges.PNG "Figure 9"
+[Figure 9]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/CommentsChange.png "Figure 9"
 [Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Kiss.png "Figure 13"
 [Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/DRYBefore.png "Figure 15"
 [Figure 20]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/UndacCommentsHTML.PNG "Figure 16"
