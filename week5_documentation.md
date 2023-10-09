@@ -1291,7 +1291,7 @@ Creating a good documentation allows users and other developers to understand th
 
 ### Meaningful Names 
 By changing variable name to something that describes its role better I was able to remove a comment describing the role of the variable. 
-The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11](#Figure_11)
+The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11](#Figure_11).
 
 ### Obvious comments
 On the [Figure 5](#Figure_5) in the *CancelButton_Clicked* there is a comment before *await Navigation.PopAsync();* which seems reduntant as the function call is simple and the method name is descriptive. This means that the comments states the obvious and it is not required for anything. The version of this code witout a comment can be seen on the [Figure 11](#Figure_11).
