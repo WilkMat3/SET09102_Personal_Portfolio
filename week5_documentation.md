@@ -29,6 +29,7 @@ Naming in programming is extremely important. Understandably, descriptive and re
 Moreover, C# has its naming conventions. For example, the usage of Pascal Case for classes and methods names or camelCase for local variables, method arguments and private fields names. 
 
 ### Code before 
+<a name="Figure_1"></a>
 ```
 using Undac.Models;
 
@@ -92,7 +93,7 @@ public partial class OrganisationEditPage : ContentPage
 
 ```
 *Figure 1: Edit Page - code fromw week 3* 
-<a name="Figure_1"></a>
+
 
 ### Code after
 
@@ -507,6 +508,7 @@ public partial class OrganisationEditPage : ContentPage
 *Figure 10: Edit Page - before KISS refactor* 
 <a name="Figure_10"></a>
 ### Code after
+<a name="Figure_11"></a>
 ```
 using Undac.Models;
 
@@ -561,8 +563,9 @@ public partial class OrganisationEditPage : ContentPage
 
 ```
 *Figure 11: Edit Page - after KISS refactor* 
-<a name="Figure_11"></a>
+
 ![Figure 12](./images/KISS.PNG)
+*Figure 12: Edit Page - after KISS refactor* 
 
 ### Explanation
 Despite the code not being overly complicated, I highlighted the if else blocks inside the *SaveButton_Clicked* method that could be further simplified. Nesting if statements should be avoided if not required and adding extra if else or else coditions increases the complexity.
@@ -626,8 +629,8 @@ public partial class OrganisationEditPage : ContentPage
         }
 }
 ```
-*Figure 12: Edit Page - Before DRY refactor* 
-<a name="Figure_12"></a>
+*Figure 13: Edit Page - Before DRY refactor* 
+<a name="Figure_13"></a>
 
 ```
 using Undac.Models;
@@ -674,9 +677,9 @@ public partial class OrganisationAddPage : ContentPage
     }
 }
 ```
-*Figure 13: Add Page - Before DRY refactor*
-<a name="Figure_13"></a>
-![Figure 14](./images/DRYBefore.PNG)
+*Figure 14: Add Page - Before DRY refactor*
+<a name="Figure_14"></a>
+![Figure 15](./images/DRYBefore.PNG)
 
 ### Code after
 ```
@@ -694,8 +697,8 @@ namespace Undac.Helpers
 }
 ```
 
-*Figure 15: New class InputValidator - after DRY refactor* 
-<a name="Figure_15"></a>
+*Figure 16: New class InputValidator - after DRY refactor* 
+<a name="Figure_16"></a>
 
 ```
 using Undac.Helpers;
@@ -742,7 +745,7 @@ public partial class OrganisationAddPage : ContentPage
 }
 ```
 
-*Figure 16: OrganisationAddPage Class - after DRY refactor* 
+*Figure 17: OrganisationAddPage Class - after DRY refactor* 
 <a name="Figure_16"></a>
 
 ```
@@ -799,8 +802,8 @@ public partial class OrganisationEditPage : ContentPage
 
 ```
 
-*Figure 17: OrganisationEditPage Class - after DRY refactor* 
-<a name="Figure_17"></a>
+*Figure 18: OrganisationEditPage Class - after DRY refactor* 
+<a name="Figure_18"></a>
 
 ### Explanation
 My OrganisationEditPage and OrganisationAddPage classes are reusing the same code. On the [Figure 14] I have highlighted areas of the code that violate DRY principle. 
@@ -872,8 +875,8 @@ namespace Undac.Data
     }
 }
 ```
-*Figure 18: Generic class for database access* 
-<a name="Figure_18"></a>
+*Figure 19: Generic class for database access* 
+<a name="Figure_19"></a>
 ### Explanation
 
 While working on my ticket I decided to create a class that would possibly simplify the process of saving items to the database and reduce code needed to implement saving various models to the database.
@@ -972,12 +975,12 @@ namespace Undac.Data
 }
 
 ```
-*Figure 19: Database Access layer with xml comments* 
-<a name="Figure_19"></a>
+*Figure 20: Database Access layer with xml comments* 
+<a name="Figure_20"></a>
 
-![Figure 20](./images/UndacCommentsHTML.PNG)
+![Figure 21](./images/UndacCommentsHTML.PNG)
 
-*Figure 20: Database Access layer Doxygen HTML view* 
+*Figure 21: Database Access layer Doxygen HTML view* 
 
 ```
 using System.Collections.ObjectModel;
@@ -1062,12 +1065,12 @@ namespace Undac.Views.Admin
     }
 }
 ```
-*Figure 21: OrganisationPage with xml comments* 
-<a name="Figure_21"></a>
+*Figure 22: OrganisationPage with xml comments* 
+<a name="Figure_22"></a>
 
-![Figure 22](./images/OrganisationPageHTML.PNG)
+![Figure 23](./images/OrganisationPageHTML.PNG)
 
-*Figure 22: OrganisationPage Doxygen HTML view* 
+*Figure 23: OrganisationPage Doxygen HTML view* 
 
 
 ```
@@ -1139,12 +1142,12 @@ namespace Undac.Views.Admin
 }
 
 ```
-*Figure 23: EditPage with xml comments* 
-<a name="Figure_23"></a>
+*Figure 24: EditPage with xml comments* 
+<a name="Figure_24"></a>
 
-![Figure 24](./images/EditPageHTML.PNG)
+![Figure 25](./images/EditPageHTML.PNG)
 
-*Figure 24: EditPage Doxygen HTML view* 
+*Figure 25: EditPage Doxygen HTML view* 
 
 ```
 using Undac.Helpers;
@@ -1207,12 +1210,12 @@ namespace Undac.Views.Admin
 }
 
 ```
-*Figure 25: AddPage with xml comments* 
-<a name="Figure_25"></a>
+*Figure 26: AddPage with xml comments* 
+<a name="Figure_26"></a>
 
-![Figure 26](./images/AddPageHTML.PNG)
+![Figure 27](./images/AddPageHTML.PNG)
 
-*Figure 26: AddPage Doxygen HTML view* 
+*Figure 27: AddPage Doxygen HTML view* 
 
 ```
 using SQLite;
@@ -1238,12 +1241,12 @@ namespace Undac.Models
     }
 }
 ```
-*Figure 27: AddPage with xml comments* 
-<a name="Figure_27"></a>
+*Figure 28: AddPage with xml comments* 
 
-![Figure 28](./images/OrgModelHTML.PNG)
 
-*Figure 28: AddPage Doxygen HTML view* 
+![Figure 29](./images/OrgModelHTML.PNG)
+
+*Figure 29: AddPage Doxygen HTML view* 
 
 
 ### Structure
@@ -1251,8 +1254,8 @@ The XML comments start with *///* and the summary tag is generated by Visual Stu
 
 The HTML view of Doxygen contains all the information contained in the XML comments. On the [Figure 29] all classes with descriptions can be seen. The [Figure 29] provides an insight into one of the classes and apart from viewing the description of the class and the methods within there is a diagram representing the class and its inheritance. 
 
-![Figure 29](./images/ClassViewHTML.PNG)
-*Figure 29: Class Doxygen HTML view* 
+![Figure 30](./images/ClassViewHTML.PNG)
+*Figure 30: Class Doxygen HTML view* 
 
 ### Purpose
 
@@ -1295,7 +1298,7 @@ Creating a good documentation allows users and other developers to understand th
 ```
 ### Meaningful Names 
 By changing variable name to something that describes its role better I was able to remove a comment describing the role of the variable. 
-The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11]
+The initial state can be seen on the [Figure 1](#Figure_1) where I used abbreviated name *org* to store a reference to an organisation retrieved from the database. Changing the name to *exisitngOrganisation* makes the code more redable and allows others to understand the purpose of the variable. This can be seen on the [Figure 11](#Figure_11)
 ### Extracting Method to improve code readability 
 ### Obvious comments
 
@@ -1311,13 +1314,13 @@ Microsoft (Ed.). (2023b, June 15). C# Coding Conventions. Retrieved October 5, 2
 ‌
 
 [Figure 3]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/NamingChanges.PNG "Figure 3"
-[Figure 6]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/SpacingChanges.PNG "Figure 6"
+[Figure 6]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/SpacingChange.PNG "Figure 6"
 [Figure 9]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/CommentsChanges.PNG "Figure 9"
-[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Kiss.PNG "Figure 12"
-[Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/DRYBefore.PNG "Figure 14"
-[Figure 20]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/UndacCommentsHTML.PNG "Figure 15"
-[Figure 22]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrganisationPageHTML.PNG "Figure 22"
-[Figure 24]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/EditPageHTML.PNG "Figure 24"
-[Figure 26]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/AddPageHTML.PNG "Figure 26"
-[Figure 28]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrgModelHTML.PNG "Figure 28"
-[Figure 29]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/ClassViewHTML.PNG "Figure 29"
+[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Kiss.PNG "Figure 13"
+[Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/DRYBefore.PNG "Figure 15"
+[Figure 20]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/UndacCommentsHTML.PNG "Figure 16"
+[Figure 22]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrganisationPageHTML.PNG "Figure 23"
+[Figure 24]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/EditPageHTML.PNG "Figure 25"
+[Figure 26]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/AddPageHTML.PNG "Figure 27"
+[Figure 28]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/OrgModelHTML.PNG "Figure 29"
+[Figure 29]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/ClassViewHTML.PNG "Figure 30"
