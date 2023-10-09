@@ -247,6 +247,7 @@ public partial class OrganisationEditPage : ContentPage
 ```
 *Figure 4: Edit Page - code before vertical spacing refactor* 
 <a name="Figure_4"></a>
+
 ### Code after
 ```
 using Undac.Models;
@@ -305,7 +306,8 @@ public partial class OrganisationEditPage : ContentPage
 ```
 *Figure 5: Edit Page - code from week 5 after vertical spacing refactor* 
 <a name="Figure_5"></a>
-![Figure 6](./images/SpacingChanges.PNG)
+
+![Figure 6](./images/SpacingChange.PNG)
 
 *Figure 6: Edit Page - screenshot from week 5 after spacing refactor* 
 
@@ -381,6 +383,7 @@ public partial class OrganisationEditPage : ContentPage
 ```
 *Figure 7: Edit Page - code before comments changes* 
 <a name="Figure_7"></a>
+
 ### Code after
 ```
 using Undac.Models;
@@ -442,7 +445,7 @@ public partial class OrganisationEditPage : ContentPage
 
 ![Figure 9](./images/CommentsChange.png)
 
-*Figure 8: Edit Page - code from week 5 after comments changes* 
+*Figure 9: Edit Page - code from week 5 after comments changes* 
 
 ### Explanation
 I have decided to remove all comments but one. As highlighted on the [Figure 9], I have moved a comment to a separate line and changed it, so it amplifies why this line is so important. 
@@ -511,6 +514,7 @@ public partial class OrganisationEditPage : ContentPage
 ```
 *Figure 10: Edit Page - before KISS refactor* 
 <a name="Figure_10"></a>
+
 ### Code after
 <a name="Figure_11"></a>
 ```
@@ -569,6 +573,7 @@ public partial class OrganisationEditPage : ContentPage
 *Figure 11: Edit Page - after KISS refactor* 
 
 ![Figure 12](./images/KISS.png)
+
 *Figure 12: Edit Page - after KISS refactor* 
 
 ### Explanation
@@ -636,6 +641,7 @@ public partial class OrganisationEditPage : ContentPage
 *Figure 13: Edit Page - Before DRY refactor* 
 <a name="Figure_13"></a>
 
+
 ```
 using Undac.Models;
 
@@ -683,7 +689,11 @@ public partial class OrganisationAddPage : ContentPage
 ```
 *Figure 14: Add Page - Before DRY refactor*
 <a name="Figure_14"></a>
+
+
 ![Figure 15](./images/DRYBefore.png)
+
+*Figure 15: Add Page - Before DRY refactor highlighted repeating code*
 
 ### Code after
 ```
@@ -703,6 +713,7 @@ namespace Undac.Helpers
 
 *Figure 16: New class InputValidator - after DRY refactor* 
 <a name="Figure_16"></a>
+
 
 ```
 using Undac.Helpers;
@@ -750,7 +761,8 @@ public partial class OrganisationAddPage : ContentPage
 ```
 
 *Figure 17: OrganisationAddPage Class - after DRY refactor* 
-<a name="Figure_16"></a>
+<a name="Figure_17"></a>
+
 
 ```
 using Undac.Helpers;
@@ -808,6 +820,7 @@ public partial class OrganisationEditPage : ContentPage
 
 *Figure 18: OrganisationEditPage Class - after DRY refactor* 
 <a name="Figure_18"></a>
+
 
 ### Explanation
 My OrganisationEditPage and OrganisationAddPage classes are reusing the same code. On the [Figure 14] I have highlighted areas of the code that violate DRY principle. 
@@ -881,6 +894,7 @@ namespace Undac.Data
 ```
 *Figure 19: Generic class for database access* 
 <a name="Figure_19"></a>
+
 ### Explanation
 
 While working on my ticket I decided to create a class that would possibly simplify the process of saving items to the database and reduce code needed to implement saving various models to the database.
@@ -982,6 +996,7 @@ namespace Undac.Data
 *Figure 20: Database Access layer with xml comments* 
 <a name="Figure_20"></a>
 
+
 ![Figure 21](./images/UndacCommentsHTML.PNG)
 
 *Figure 21: Database Access layer Doxygen HTML view* 
@@ -1072,6 +1087,7 @@ namespace Undac.Views.Admin
 *Figure 22: OrganisationPage with xml comments* 
 <a name="Figure_22"></a>
 
+
 ![Figure 23](./images/OrganisationPageHTML.PNG)
 
 *Figure 23: OrganisationPage Doxygen HTML view* 
@@ -1149,6 +1165,7 @@ namespace Undac.Views.Admin
 *Figure 24: EditPage with xml comments* 
 <a name="Figure_24"></a>
 
+
 ![Figure 25](./images/EditPageHTML.PNG)
 
 *Figure 25: EditPage Doxygen HTML view* 
@@ -1216,6 +1233,7 @@ namespace Undac.Views.Admin
 ```
 *Figure 26: AddPage with xml comments* 
 <a name="Figure_26"></a>
+
 
 ![Figure 27](./images/AddPageHTML.PNG)
 
