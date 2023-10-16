@@ -114,7 +114,7 @@ namespace HangmanTests.MateuszW_Tests
 *Figure 2: Testing the OnAttemptSubmitted() method*
 
 ### Testing Strategy
-Simillarly to the other test example, tests are arragned in the  Arrange, Act and Assert rule. A new game is initiated with a specific level. 
+Simillarly to the other test example, tests are arragned in the Arrange, Act and Assert rule. A new game is initiated with a specific level. 
 
 The act part is the call *CreateNewChallenge* method which is higier order method. As a result of calls within that method a suitable word is selected from a list of strings. 
 
