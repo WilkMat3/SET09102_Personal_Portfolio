@@ -62,14 +62,16 @@ I have arranged the code according to the Arrange, Act and Assert rule. I have c
 The Act part of the test is done by the *gamePage.OnAttemptSubmitted(this, new EventArgs());* call. I have added *IUserInputProvider* to the project along with a *UserInputProvider* class that is used when the application is running normally. IUserInputProvider is simply responsible for retrieving the data from the user input. 
 This is a unit test and not a platform specific test, UI does not render so I swapped the UI for a mock object to simulate data provided by users.
 
-The Assert part compares the expected remaining attemts with actual attempts. I used the Theory and InlineData syntax to provide test case for invalid and valid input. This way I did not have to write the same test again but using different data. 
+The Assert part compares the expected remaining attemts with actual attempts. I used the Theory and InlineData syntax to provide test cases for invalid and valid input. This way I did not have to write the same test again but using different data. 
+
 ### Reason for testing
 This part of the functionality is crucial for the game logic. We want to know that the user is not penalised for guessing correctly but also we want to make sure that a chance is subtracted every time a user guesses incorrectly.
+I was trying to use moq to preform testing and I found that mocking the  UserInputProvider (which would ideally preform all the validation on the input) would mean that we lose some points in the competition as this was not part of the original code. On the other hand doing so enhanced my learning as I had to learn more about dependcy injections and mocking. 
 
 ### Limitations
 This code tests two states, user could guess the letter or not. But it dos not check invalid inputs. Apart from that I am mocking the UI in this test, specifically the Entry field from UI which provides the input for this tests. On some level I am not testing the actual implementation as I am not using UI. There is an argumant here about testing other cases as validation could be done at a different level and this method does not have to handle invalid input. 
 
-## Example one
+## Example two
 
 ### Summary 
 This code is testing the logic within *CreateNewChallenge* method. Specifically those tests are checking if each game uses valid word for the difficulty level. 
