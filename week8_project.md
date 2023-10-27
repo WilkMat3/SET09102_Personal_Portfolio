@@ -1,4 +1,14 @@
 # Project work 1
+## Summary
+This week I have been working on the [Access lists of pool experts so that I can recruit them into the team]" issue. The work was split between two people, I would be taking care of CRUD methods and tests and my colleague would take care of UI and views. 
+As a part of the acceptance criteria we had to make sure that the implementation allows for viewing a pool of experts along with their associations status, status change date and working location.
+
+## Review changes to my code
+
+
+## My review 
+
+## Reflections
 
 In week 8, you are exercising all the principles and techniques that have been discussed 
 in the module so far. Your portfolio entry should demonstrate your ability to integrate 
@@ -19,3 +29,4 @@ the various dimensions of software engineering into your practice. It should inc
 
 Be sure to include links to the original items in the team's GitHub repository.
 
+https://github.com/xinjoonha/SET09102_PURPLE/issues/48
