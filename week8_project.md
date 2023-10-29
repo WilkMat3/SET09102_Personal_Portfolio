@@ -1,9 +1,9 @@
-# Project work 1
+# Project work week 8
 ## Summary
-This week I have been working on the [Access lists of pool experts so that I can recruit them into the team] issue. The work was split between two people, I would be taking care of CRUD methods and tests and my colleague would take care of UI and views. 
-As a part of the acceptance criteria we had to make sure that the implementation allows for viewing a pool of experts along with their associations status, status change date and working location.
+This week I have been working on the [Access lists of pool experts so that I can recruit them into the team](https://github.com/xinjoonha/SET09102_PURPLE/issues/48) issue. The work was split between two people, I would be taking care of CRUD methods and tests and my colleague would take care of UI and views. 
+As a part of the acceptance criteria, we had to make sure that the implementation allows for viewing a pool of experts along with their association status, status change date and working location.
 
-I wanted to implement the repository pattern for our ticket. We keep adding extra models to the project and there is a lot of code repetitions because of that. This violates the DRY principle as each implementation of crud functions on an object is basically a repetition. 
+I wanted to implement the repository pattern for our ticket. We keep adding extra models to the project and there are a lot of code repetitions because of that. This violates the DRY principle as each implementation of crud functions on an object is a repetition. 
 
 Firstly, I created the interface with all required CRUD methods as per Fig 1. The *T* is a placeholder that represents a generic type. 
 
@@ -22,12 +22,13 @@ namespace Undac.Data.Repositories
 *Figure 1: Repository Pattern generic interface
 
 
-The Repository class is storing method implementation that will be used with different model objects. I had to specify that the *T* placeholoder would be a class or an interface and that it will have parameterless constructor as per the sginature of the class:
+The Repository class contains a method implementation that will be used with different model objects. I had to specify that the *T* placeholder would be a class or an interface and that it would have a parameterless constructor as per the signature of the class:
+
 ``
 public class Repository<T> : IRepository<T> where T : class, new()
 ``
 
-we are using SQL Lite and we inject the SQLLiteAsyncConnection to the constructor so that the CRUD operations can be done on our database.
+We are using SQL Lite and we inject the SQLLiteAsyncConnection to the constructor so that the CRUD operations can be done on our database.
 
 ```
 using SQLite;
@@ -115,8 +116,7 @@ namespace Undac.Data.Repositories
 ```
 *Figure 2: Repository Pattern generic CRUD implementation
 
-
-On the Figure 3 & 4 I have included the implementation of specific interface and repository class. I both cases I specify that an Expert object would be used with those implementations, this still uses the generic repository for basic CRUD operations. If I wanted to have a method specific to ExpertRepository I could have included it in the IExpertRepository interface and ExpertRepository. Otherwise I just inherit the base methods from Repository class. Thanks to this implementation only new repositories need to be added and not the same crud methods and classes for each type.
+In the Figure 3 & 4 I have included the implementation of specific interface and repository classes. In both cases I specify that an Expert object would be used with those implementations, this still uses the generic repository for basic CRUD operations. If I wanted to have a method specific to ExpertRepository I could have included it in the IExpertRepository interface and ExpertRepository. Otherwise, I just inherit the base methods from the Repository class. Thanks to this implementation only new repositories need to be added and not the same crud methods and classes for each type.
 
 ```
 using Undac.Models;
@@ -154,7 +154,7 @@ namespace Undac.Data.Repositories
 *Figure 4: Repository Pattern -Expert repository
 
 
-On the Figure 5, I used the dependecy injection to inject the ExpertRepository into the class as can be seen in the constructor. the *OnStatusChanged()* is using the *SaveAsync(expert)* method inherited from the Repository class to save the expert in the database. 
+In the Figure 5, I used the dependency injection to inject the ExpertRepository into the class as can be seen in the constructor. the *OnStatusChanged()* uses the *SaveAsync(expert)* method inherited from the Repository class to save the expert in the database
 
 ```
 using Undac.Models;
@@ -204,7 +204,7 @@ public partial class EditExpertPage : ContentPage
 
 ## Testing
 
-I have added tests to check the CRUD operations using the repository pattern on with Experts object. We have decided to use NUnit as a group as a testing framework. The Tests cover happy path for all Crud operations as seen on the Figure 6. This is something I could expand on in two ways. Firstly, I can try mocking the database instead of creating a test database. Secondly, I could try adding more edge case tests to try to break the program which would ensure that we have some form of error handling within our code. 
+I have added tests to check the CRUD operations using the repository pattern with the Experts object. We have decided to use NUnit as a group as a testing framework. The Tests cover the happy path for all Crud operations as seen in Figure 6. This is something I could expand on in two ways. Firstly, I can try mocking the database instead of creating a test database. Secondly, I could try adding more edge case tests to try to break the program which would ensure that we have some form of error handling within our code. 
 
 
 ```
@@ -319,23 +319,23 @@ namespace UndacTests.ExpertCrudTests
 *Figure 6: Test methods with new Repository pattern
 
 ## Getting my code reviewed
-The reviews we received were not insightful, unfortunately nobody pointed out anything interesting for our PR. 
+The reviews we received were not insightful, unfortunately, nobody pointed out anything interesting for our PR. 
 
 ![Figure 7](./images/Reviews.PNG)
 
 *Figure 7: Reviews for my pull request
 
-On the other hand pairing up for this pr enabled other form of feedback as my colleague gave me some informal reviews regarding my code format and usage of empty lines. 
-On a couple of occasions I have left empty lines at the begining of the method which was redundant and did not add to the code readability. I have never noticed that, and I will definately pay attention to it from now on. 
+On the other hand, pairing up for this PR enabled another form of feedback as my colleague gave me some informal reviews regarding my code format and usage of empty lines. 
+On a couple of occasions, I have left empty lines at the beginning of the method which was redundant and did not add to the code readability. I have never noticed that, and I will definitely pay attention to it from now on. 
 
 ## Leading a code review
-I have reviewed several PRs this week mostly focusing on basics such as checking if code compiles without any errors and all tests pass. I have been paying attention to code formatting, C# conventions as well as the rules of Clean Code such as DRY and YAGNI.
+I have reviewed several PRs this week mostly focusing on basics such as checking if the code compiles without any errors and all tests pass. I have been paying attention to code formatting, C# conventions and the rules of Clean Code such as DRY and YAGNI.
 
-Alls(2020) in his book writes that when leading a code review we should be encouraging and not overly crictical. Providing constructive feedback is important as this is one of the ways develepers improve. In my comments I have tried to be factual and contain explanation of why I think a piece of code should be changed.
+Alls (2020) in his book writes that when leading a code review we should be encouraging and not overly critical. Providing constructive feedback is important as this is one of the ways developers improve. In my comments, I have tried to be factual and contain an explanation of why I think a piece of code should be changed.
 
 I had an opportunity to review a test project for one of the pull requests and I found two interesting issues that I wanted to mention.
-The code one the Figure 9 shows a test which is split into three steps Arrange Act and Assert.
-The problem with this particular code is the Assert statements. During my placement I was told that multiple Assert statements are sometimes necessary but they should always be accompanied by a comment. The implementation below does not include a meaningful comment to each assert statement, if a test fails we won't know what caused the fail. To fix the issue we would have to spend more time investigating. By adding a commentary to the test we can add more context to each assert statement. 
+The code in Figure 9 shows a test which is split into three steps Arrange Act and Assert.
+The problem with this particular code is the Assert statements. During my placement, I was told that multiple Assert statements are sometimes necessary but they should always be accompanied by a comment. The implementation below does not include a meaningful comment to each assert statement, if a test fails we won't know what caused the fail. To fix the issue we would have to spend more time investigating. By adding a commentary to the test we can add more context to each assert statement. 
 
 ```
         [Test]
@@ -363,14 +363,14 @@ The problem with this particular code is the Assert statements. During my placem
 ```
 *Figure 9: Reviewed Code - Multiple Asserts
 
-On the Figure 10 I have included the comment I left on the PR. As mentioned before I wanted to give more context for the other group memeber so they can understand why it would make sense to add a comment to a test. 
+In Figure 10 I have included the comment I left on the PR. As mentioned before I wanted to give more context for the other group members so they can understand why it would make sense to add a comment to a test. 
 
 ![Figure 10](./images/Comment_MultipleAsserts.PNG)
 *Figure 10: Reviewed Code - Multiple Asserts - Comment
 
-On the Figure 11 we can see another test taken from the same test class. In the arrange section there we can see that the if statement is repeated ( same as on the Figure 9).
+In Figure 11 we can see another test taken from the same test class. In the arrange section we can see that the if statement is repeated ( same as in Figure 9).
 NUnit provides SetUp methods that allow for some code reusability, especially when it comes to arranging test data. 
-I have advised to move that part to the SetUp methods to prevent violating DRY principle as per the Figure 12 comment.
+I have advised to move that part to the SetUp methods to prevent violating the DRY principle as per the Figure 12 comment.
 
 ```
      /// <summary>
@@ -405,12 +405,12 @@ I have advised to move that part to the SetUp methods to prevent violating DRY p
 *Figure 12: Reviewed Code - DRY- Comment
 
 ## Reflections
-Every ticket we have has a drastically different implementation. This week I have worked on the Repository pattern for my ticket and after a brief discussion we decided that the whole team should implement this approach within their implementation. Simmilarly, we talked about changes to the UI implementation. We decided that one person will implement a UI that we can reuse for all of our tickets. This might not be completed this week but we will adapt those changes. This apporach helps with the issues we have as a team. On the other hand this might reduce learning for some team members as we are reusing the code for consistency. 
+Every ticket we have has a drastically different implementation. This week I worked on the Repository pattern for my ticket and after a brief discussion, we decided that the whole team should implement this approach within their implementation. Similarly, we talked about changes to the UI implementation. We decided that one person would implement a UI that we could reuse for all of our tickets. This might not be completed this week but we will adapt those changes. This approach helps with the issues we have as a team. On the other hand, this might reduce learning for some team members as we are reusing the code for consistency. 
 
-In general, our team has maybe 5-6 people who are regulary contribuitng to the project. Adding the common UI and the Repository patterns helped with engagement. This could be because we finally agreed to do something as a team and organised our work a bit. We are still far from being effective, good example of potential improvement are reviews which in case of PR that I created were not insightful. I felt that no one looked into my PR properly hence the reviews were like that. Another good example is amount of pull requests ready to be revieved by Sunday afternoon. Including my PR there were only two other PRs. 
-In my opinion we do not work as a Scrum team. I can compare it to my placement expirience where the team had daily standups and other ceremonies that helped keeping everyone focused. We are not doing any of that. The Discord channel is a good way of communicating but it is irregular. This is something that we could improve. At least we could conduct a weekly stand up on Monday.
+In general, our team has maybe 5-6 people who are regularly contributing to the project. Adding the common UI and the Repository patterns helped with engagement. This could be because we finally agreed to do something as a team and organised our work a bit. We are still far from being effective, a good example of potential improvement is reviews which in the case of the PR that I created were not insightful. I felt that no one looked into my PR properly hence the reviews were like that. Another good example is the number of pull requests ready to be reviewed by Sunday afternoon. Including my PR there were only two other PRs. 
+In my opinion, we do not work as a Scrum team. I can compare it to my placement experience where the team had daily standups and other ceremonies that helped keep everyone focused. We are not doing any of that. The Discord channel is a good way of communicating but it is irregular. This is something that we could improve. At least we could conduct a weekly stand-up on Monday.
 
-I think that the level of work produced this week was much highier than previously. I paired up with Marco to work on my ticket and thanks to his insights I was able to improve my code. I personally, still feel that I have not understood how to use dependecy injection properly and I have to spend more time next week how I can use it within MAUI app. Specifically, I am unsure how automatically dependencies are injected after declaring them as singletions in the app builder. 
+I think that the level of work produced this week was much higher than previously. I paired up with Marco to work on my ticket and thanks to his insights I was able to improve my code. I personally, still feel that I have not understood how to use dependency injection properly and I have to spend more time next week on how I can use it within the MAUI app. Specifically, I am unsure how automatically dependencies are injected after declaring them as singletons in the app builder. 
 
 ## References
 Alls, J. (2020). Clean Code in C#. Packt Publishing Ltd.
@@ -419,7 +419,7 @@ fullstackcodr. (2021, November 21).net Generic Repository Pattern. Retrieved Oct
 
 
 ‌
-https://github.com/xinjoonha/SET09102_PURPLE/issues/48
+
 
 [Figure 7]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Reviews.png "Figure 7"
 
