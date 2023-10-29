@@ -132,6 +132,7 @@ namespace Undac.Data.Repositories
 ```
 *Figure 3: Repository Pattern -  interface for Expert repository
 
+
 ```
 using SQLite;
 using Undac.Models;
@@ -400,6 +401,7 @@ I have advised to move that part to the SetUp methods to prevent violating the D
         }
 ```
 *Figure 11: Reviewed Code - DRY
+
 
 ![Figure 12](./images/Comment_DRY.PNG)
 *Figure 12: Reviewed Code - DRY- Comment
