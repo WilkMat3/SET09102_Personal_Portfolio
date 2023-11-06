@@ -133,7 +133,7 @@ namespace Undac.Utils
 
 *Figure 3: Filtering Methods within my static class*
  
- Initially, I have placed those methods within the view for all organisations page. I have placed it in a separate class as the method was too long and it violated the KISS principle. The method was more than 20 lines and it did more than one thing (functionality for both types of filters).
+ Initially, I have placed Figure 3 methods within the view for all organisations page. I have placed it in a separate class as the method was too long and it violated the KISS principle. The method was more than 20 lines and it did more than one thing (functionality for both types of filters).
 
 
 ```
