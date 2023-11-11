@@ -175,17 +175,290 @@ public partial class ViewAllOrganisationsPage : ContentPage
     }
 }
 ```
-*Figure 7: View - changes to the class*
+*Figure 7: View - changes to the view code behind class*
 
 Thanks to the view model my View class shrank significantly. I only required the OnAppearing method because of the Page needing to navigate to the a page where we change the status of the organisation and on return it needs to update the view. 
 Aside fronm that I am handling an event where user navigates to another page to edit status of an organisation. 
 Last week I did not implement this functionality because of few reason but one of then was connected to initialising component before binding context was set.
 
+```
+
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
+    {
+
+        public readonly UndacDatabase database;
+
+        public Repository(UndacDatabase database)
+        {
+            this.database = database;
+
+        }
+
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            await database.Init();
+            return await database.Connection.Table<TEntity>().ToListAsync();
+        }
+
+        public async Task<TEntity> GetAsync(int id)
+        {
+            await database.Init();
+            var query = database.Connection.Table<TEntity>();
+            var idProperty = typeof(TEntity).GetProperty("Id");
+
+            if (idProperty != null && idProperty.PropertyType == typeof(int))
+            {
+                return await database.Connection.FindAsync<TEntity>(id);
+            }
+            else
+            {
+                throw new InvalidOperationException($"The entity of type {typeof(TEntity).Name} does not have an 'Id' property.");
+            }
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<int> SaveAsync(TEntity item)
+        {
+            await database.Init();
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            var identifiable = item as IIdentifiable;
+            if (identifiable != null && identifiable.Id != 0)
+            {
+                return await database.Connection.UpdateAsync(item);
+            }
+            else
+            {
+                return await database.Connection.InsertAsync(item);
+            }
+        }
+
+        public async Task<int> DeleteAsync(TEntity item)
+        {
+            await database.Init();
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            return await database.Connection.DeleteAsync(item);
+        }
+    }
+```
+
+*Figure 8: Repository - changes to the class*
+
+Another important part of my update is that I have used lazy initialisation. Firstly instead of passing the SQLlite connection in the constructor I inject the database. This allowed me to add database.Init() to each method thus allowing for lazy initialisation when a method is called.
 
 
 ## Testing
 
+I have conducted extensive manual testing and ensured all of the unit tests pass. This PR is an improvement to the work from previous week thus my tests remained the same. I have extracted the methods for filtering the organisations list to a static class. Below I are my tests:
+
+```
+        [Test]
+        public void FilterFullNameTest()
+        {
+            var testOrganisation = new Organisation
+            {
+                Name = "Test",
+                CurrentAssociation = "Pending"
+            };
+            var testOrganisation2 = new Organisation
+            {
+                Name = "No Common",
+                CurrentAssociation = "Approved"
+            };
+
+            List<Organisation> organisationList = new List<Organisation>();
+            organisationList.Add(testOrganisation);
+            organisationList.Add(testOrganisation2);
+
+            List<Organisation> filteredList = FilterMethods.FilterFullText(organisationList, "Test");
+
+            var filteredName = filteredList.First().Name;
+            Assert.Multiple(() =>
+            {
+                Assert.That(filteredList.Count, Is.EqualTo(1), "List is too long");
+                Assert.That(filteredList, Is.Not.Null, "filtered list should not be null");
+                Assert.That(filteredName, Is.EqualTo(testOrganisation.Name), "Filter was not applied");
+            });
+
+        }
+```
+
+*Figure 9: Testing FullFilter*
+
+In Figure 9 I have checked how text is filtered for the full filter. I provided two objects to check that only filtered result is returned.
+
+
+```
+        [Test]
+        public void FilterAssociationTest()
+        {
+            var testOrganisation = new Organisation
+            {
+                Name = "Test",
+                CurrentAssociation = "Pending"
+            };
+            var testOrganisation2 = new Organisation
+            {
+                Name = "No Common",
+                CurrentAssociation = "Approved"
+            };
+
+            List<Organisation> organisationList = new List<Organisation>();
+            organisationList.Add(testOrganisation);
+            organisationList.Add(testOrganisation2);
+
+            List<Organisation> filteredList = FilterMethods.FilterAssociation(organisationList, testOrganisation2.CurrentAssociation);
+
+            var filteredName = filteredList.First().CurrentAssociation;
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(filteredList.Count, Is.EqualTo(1), "List is too long");
+                Assert.That(filteredList, Is.Not.Null, "filtered list should not be null");
+                Assert.That(filteredName, Is.EqualTo(testOrganisation2.CurrentAssociation), "Filter was not applied");
+            });
+        }
+```
+
+*Figure 10: Testing AssociationFilter*
+
+Similar to the other test method I have created one that tests association status as per Figure 10.
+
+
+```
+        [Test]
+        public void FilterFullNameReturnMultipleTestsTest()
+        {
+            var testOrganisation = new Organisation
+            {
+                Name = "Test",
+                CurrentAssociation = "Pending"
+            };
+            var testOrganisation2 = new Organisation
+            {
+                Name = "No Common",
+                CurrentAssociation = "Approved"
+            };
+            var testOrganisation3 = new Organisation
+            {
+                Name = "Test213",
+                CurrentAssociation = "Pending"
+            };
+
+            List<Organisation> organisationList = new List<Organisation>();
+            organisationList.Add(testOrganisation);
+            organisationList.Add(testOrganisation2);
+            organisationList.Add(testOrganisation3);
+
+            List<Organisation> filteredList = FilterMethods.FilterFullText(organisationList, testOrganisation.Name);
+
+            var filteredName = filteredList.First().Name;
+            Assert.Multiple(() =>
+            {
+                Assert.That(filteredList.Count, Is.EqualTo(2), "List length is not correct");
+                Assert.That(filteredList, Is.Not.Null, "filtered list should not be null");
+                Assert.That(filteredName, Is.EqualTo(testOrganisation.Name), "Filter was not applied");
+            });
+
+        }
+```
+
+*Figure 11: Testing returning multiple results on the Full Filter*
+
+
+```
+        [Test]
+        public void FilterAssociationReturnMultipleTest()
+        {
+            var testOrganisation = new Organisation
+            {
+                Name = "Test",
+                CurrentAssociation = "Pending"
+            };
+            var testOrganisation2 = new Organisation
+            {
+                Name = "No Common",
+                CurrentAssociation = "Approved"
+            };
+            var testOrganisation3 = new Organisation
+            {
+                Name = "No Common2",
+                CurrentAssociation = "Approved"
+            };
+
+            List<Organisation> organisationList = new List<Organisation>();
+            organisationList.Add(testOrganisation);
+            organisationList.Add(testOrganisation2);
+            organisationList.Add(testOrganisation3);
+
+            List<Organisation> filteredList = FilterMethods.FilterAssociation(organisationList, testOrganisation2.CurrentAssociation);
+
+            var filteredName = filteredList.First().CurrentAssociation;
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(filteredList.Count, Is.EqualTo(2), "List length is not correct");
+                Assert.That(filteredList, Is.Not.Null, "filtered list should not be null");
+                Assert.That(filteredName, Is.EqualTo(testOrganisation2.CurrentAssociation), "Filter was not applied");
+            });
+        }
+```
+*Figure 12: Testing returning multiple results on the Association Filter*
+
+I have also wanted to test how filtering works when there are partial matches for more than one result as per Figures 11 and 12.
+
+
+```
+        [Test]
+        public void FilterFullNameReturnNothingTestsTest()
+        {
+            var testOrganisation = new Organisation
+            {
+                Name = "Test",
+                CurrentAssociation = "Pending"
+            };
+            var testOrganisation2 = new Organisation
+            {
+                Name = "No Common",
+                CurrentAssociation = "Approved"
+            };
+            var testOrganisation3 = new Organisation
+            {
+                Name = "Test213",
+                CurrentAssociation = "Pending"
+            };
+
+            List<Organisation> organisationList = new List<Organisation>();
+            organisationList.Add(testOrganisation);
+            organisationList.Add(testOrganisation2);
+            organisationList.Add(testOrganisation3);
+
+            List<Organisation> filteredList = FilterMethods.FilterFullText(organisationList, "Abracadabra");
+
+            Assert.That(filteredList.Count, Is.EqualTo(0), "List length is not correct");
+        }
+```
+*Figure 13: Testing no matching result*
+
+Finally, I have considered the case when there is no match for the searched phrase and I have tested if the method will result in returning an empty list. 
+
 ## Getting my code reviewed
+I am not getting a large amount of code reviews despite asking multiple times on the discord group. I know that there are few reasons for it. Firstly, we do not have too many engaged group memebers. Secondly, I try to innovate every week and add something new and valuable to the project. This means that people are not familiar with the new functionality(Repository pattern or MVVM) and they do not have much to add apart from review from perspective of coding conventions and formatting. 
+This week I received a review from my colleague in which he pointed out few mistakes that I repeated in the past. I struggle with empty lines and forget about removing unused references. I am dislexic so I have to take extra care when reviewing formatting of my code but there seem to be always something that I miss. I think I should start looking into some kind of linting tool to help me with that. 
+
+This week I only had one occurence of an extra empty line in my code:
+
+![Figure 14](./images/Comment_emptyLine.PNG)
+
+*Figure 14: Review Code - Empty line 
+
+To address this I removed the empty line, I think linting tool would make sense since I keep repeating my mistakes. On the positive side I only had one occurence of this issue in this PR.
+
+
 
 
 ## Leading a code review
@@ -201,13 +474,25 @@ Last week I did not implement this functionality because of few reason but one o
 
 ### My personal workflow
 
-Recently, I have been struggling with staying focused when working on project for multiple hours. I have multiple courseworks and assesment and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I wanted to do on top of that there are many distractions around and sometimes I cannot focus on the task at hand.
-I decided to try a pomodoro approach. For every 50 minutes of work I take a 10 minute break. Additionally, I removed all other distractions from my room(my phone).
+Recently, I have been struggling with staying focused when working on project for multiple hours. I have multiple courseworks and assesment and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I wanted to do. On top of that there are many distractions around and sometimes I cannot focus on the task at hand.
+I decided to try a pomodoro approach after a conversation with one of my colleagues from the group. For every 50 minutes of work I take a 10 minute break. Additionally, I removed all other distractions from my room(my phone).
 
 This allowed me to complete more work within few hours than what I used to complete in a day. By separating time for work and rest I became more efficient and organised.
-Retrospectively, I regret not doing it before but overall I have shown that I can adapt when things do not go as planned and I can find a solution to a problem
+Retrospectively, I regret not doing it before but overall I have shown that I can adapt when things do not go as planned and I can find a solution to a problem.
 This might seem not related to the subject but in the real world we do have to complete projects on time and being efficient is a necessity when working with Agile methodology. 
 
+
+[Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_emptyLine.png "Figure 14"
+
+[Figure 15]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 15"
+
+[Figure 16]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Constructor_review.png "Figure 16"
+
+[Figure 17]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 17"
+
+[Figure 18]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Constructor_review.png "Figure 18"
+
+[Figure 19]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 19"
 
 Week 10 is the third and last week in a series in which the goal is to improve your 
 personal software engineering practice. Your portfolio entry has the same general content
