@@ -1,6 +1,7 @@
 # Project work 2
 
 ## Summary
+
 This week I have been building on the work from last week by working on the [Maintain view lists of partner agencies (UN, International, national, NGO, voluntary)](https://github.com/xinjoonha/SET09102_PURPLE/issues/64). Previously I have struggled to implement the MVVM pattern for the ViewAllOrganisationsPage but this week I have been able to incorporate it into my code. I have resorted to using MVVM community toolkit version 8.0.0 as it was the latest one that have not caused any issues when running the application. In summary I made following changes to the code:
 
 *+ added view model for ViewAllorganisationsPage
@@ -114,6 +115,7 @@ I had to keep two separte lists for organisations to make sure that filtering ru
             }
         }
 ```
+
 *Figure 4: ModelView - Triggering the command*
 
 As per the Figure 4, anytime one of the search bars changes the FilterOrganisation command/method is executed. This is somehting I came across thanks to the ChatGpt when trying to figure out how to trigger the filter method for search bars.
@@ -175,11 +177,13 @@ public partial class ViewAllOrganisationsPage : ContentPage
     }
 }
 ```
+
 *Figure 7: View - changes to the view code behind class*
 
 Thanks to the view model my View class shrank significantly. I only required the OnAppearing method because of the Page needing to navigate to the a page where we change the status of the organisation and on return it needs to update the view. 
 Aside fronm that I am handling an event where user navigates to another page to edit status of an organisation. 
 Last week I did not implement this functionality because of few reason but one of then was connected to initialising component before binding context was set.
+
 
 ```
 
@@ -446,22 +450,268 @@ I have also wanted to test how filtering works when there are partial matches fo
 
 Finally, I have considered the case when there is no match for the searched phrase and I have tested if the method will result in returning an empty list. 
 
+
 ## Getting my code reviewed
+
 I am not getting a large amount of code reviews despite asking multiple times on the discord group. I know that there are few reasons for it. Firstly, we do not have too many engaged group memebers. Secondly, I try to innovate every week and add something new and valuable to the project. This means that people are not familiar with the new functionality(Repository pattern or MVVM) and they do not have much to add apart from review from perspective of coding conventions and formatting. 
 This week I received a review from my colleague in which he pointed out few mistakes that I repeated in the past. I struggle with empty lines and forget about removing unused references. I am dislexic so I have to take extra care when reviewing formatting of my code but there seem to be always something that I miss. I think I should start looking into some kind of linting tool to help me with that. 
 
-This week I only had one occurence of an extra empty line in my code:
+This week I only had one occurence of an extra empty line in my code, in the past that happened to me much more often.
+
 
 ![Figure 14](./images/Comment_emptyLine.PNG)
 
-*Figure 14: Review Code - Empty line 
+*Figure 14: Review comment - Empty line 
 
 To address this I removed the empty line, I think linting tool would make sense since I keep repeating my mistakes. On the positive side I only had one occurence of this issue in this PR.
 
 
+![Figure 15](./images/Comment_references.PNG)
+
+*Figure 15: Review comment - unused reference
+
+In the Figrue 15 I have documented another common mistake I make. Visual Studio adds a lot of sometimes unecessary references to my code. I keep forgetting about checking that. This is something I need to stay on top of but I think a linting tool could help to highlight this. I removed unused references from the code. 
+
+
+![Figure 16](./images/Comment_IncorrectName.PNG)
+
+*Figure 16: Review comment - incorrect name
+
+
+![Figure 17](./images/Comment_Incorrect2.PNG)
+
+*Figure 17: Review comment - incorrect name second comment
+
+Figure 16 & 17 reffer to the same issue which is the incorrect name of the method. Analyser in Visual studio does not pick it up and I did not rename the method accordingly. Async methods should finish on "Async". 
+To amend that I changed the name of the method as suggested in Figure 17.
+
+
+![Figure 18](./images/Positive_comment.PNG)
+
+*Figure 18: Review comment - query about code 
+
+
+![Figure 19](./images/Comment_asnwer.PNG)
+
+*Figure 19: Review comment - query about code - explanation
+
+
+The comment in the Figure 18 was unusual as it was mostly asking for clarification. I provided a brief explanation as per the Figure 19. I explained where the dependency is registered within our app. 
 
 
 ## Leading a code review
+
+Whis week  code review I have completed was on [View the current status of all OSOCC accommodation so that I can ensure that all personal and operational space needs are met](https://github.com/xinjoonha/SET09102_PURPLE/issues/90).
+
+I looked through the list of basic code issues such as formatting, naming conventions or code smells. This pull request did not implement MVVM pattern so I included regarding that. 
+
+```
+using Undac.Models;
+using Undac.Data.Repositories;
+
+namespace Undac.Views.ListsViews;
+
+/// <summary>
+/// This class contains the logic for the AllAccommodationPage page
+/// </summary>
+public partial class AllAccommodationsPage : ContentPage
+{
+    private List<Accommodation> allAccommodations;
+    private readonly IAccommodationRepository accommodationsRepo;
+
+    /// <summary>
+    /// Constructor for the AllAccommodationsPage class
+    /// </summary>
+    public AllAccommodationsPage()
+    {
+        InitializeComponent();
+        accommodationsRepo = new AccommodationRepository(App.Database.Database);
+    }
+
+    /// <summary>
+    /// This method loads all the accommodations into the UI
+    /// </summary>
+    private async void LoadAllAccommodations()
+    {
+        var accommodations = await accommodationsRepo.GetAllAsync();
+        allAccommodations = accommodations.OrderBy(accommodation => (double)accommodation.UsedSpace / accommodation.TotalSpace).ToList();
+        AccommodationsListView.ItemsSource = allAccommodations;
+    }
+
+    /// <summary>
+    /// This method loads all the accommodations whenever we navigate to the page
+    /// </summary>
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadAllAccommodations();
+    }
+
+    /// <summary>
+    /// This method handles the navigation to the page for creating an accommodation
+    /// </summary>
+    private async void AddAccommodationClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditAccommodationPage(null, accommodationsRepo));
+    }
+
+    /// <summary>
+    /// This method handles the navigation on a clicked item
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void OnAccommodationClicked(object sender, ItemTappedEventArgs e)
+    {
+        if (e.Item is Accommodation accommodation)
+        {
+            await Navigation.PushAsync(new EditAccommodationPage(accommodation, accommodationsRepo));
+        }
+    }
+
+    /// <summary>
+    /// This method handles the file download
+    /// </summary>
+    private async void DownloadFileClicked(object sender, EventArgs e)
+    {
+        Uri uri = new Uri("https://www.researchgate.net/publication/307576584" +
+                          "/figure/fig2/AS:408535839068161@1474413942986/Number-of-users-and-" +
+                          "number-of-events-in-the-Virtual-OSOCC-Country-colors-indicate-the.png");
+        await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+    }
+}
+```
+
+*Figure 20: Review code - AllAccommodationsPage code
+
+
+![Figure 21](./images/Week10CodeReview1.PNG)
+
+*Figure 21: Review comment - Explanation of issue raised
+
+I the Figure 20, ideally we would want to be using MVVM pattern  to separate UI from logic and make the code more testable and readable amongst other reasons. I provided the comment as per Figure 21 explaning why and gave example of another PR that is implementing this pattern.
+
+
+```
+using Undac.Data.Repositories;
+using Undac.Models;
+
+namespace Undac.Views.ListsViews;
+
+/// <summary>
+/// This class contains the logic for the EditAccommodationtPage page
+/// </summary>
+public partial class EditAccommodationPage : ContentPage
+{
+    private Accommodation accommodation;
+    private readonly IAccommodationRepository _accommodationsRepo;
+
+    /// <summary>
+    /// Constructor for the EditAccommodationtPage class
+    /// </summary>
+    /// <param name="accommodation">The accommodation to edit</param>
+    public EditAccommodationPage(Accommodation accommodation, IAccommodationRepository accommodationsRepo)
+    {
+        InitializeComponent();
+
+        this.accommodation = accommodation;
+        _accommodationsRepo = accommodationsRepo;
+
+        // Checking whether we are creating or editing an accommodation
+        if (accommodation == null)
+        {
+            Title = "Create Accommodation";
+        }
+        else
+        {
+            NameEntry.Text = accommodation.Name;
+            UsedEntry.Text = accommodation.UsedSpace.ToString();
+            TotalEntry.Text = accommodation.TotalSpace.ToString();
+        }
+    }
+
+    /// <summary>
+    /// This method updates an accommodation
+    /// </summary>
+    public async void OnConfirmClicked(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(NameEntry.Text) ||
+            string.IsNullOrWhiteSpace(UsedEntry.Text) ||
+            string.IsNullOrWhiteSpace(TotalEntry.Text) ||
+            !int.TryParse(UsedEntry.Text, out _) ||
+            !int.TryParse(TotalEntry.Text, out _))
+        {
+            await DisplayAlert("Error", "One of the fields is invalid", "OK");
+            return;
+        }
+
+        var usedSpace = int.Parse(UsedEntry.Text);
+        var totalSpace = int.Parse(TotalEntry.Text);
+
+        if (usedSpace > totalSpace)
+        {
+            await DisplayAlert("Error", "The used spaces can't be more than the total available spaces!", "OK");
+            return;
+        }
+
+        // Accommodation is null if we are creating one
+        accommodation ??= new Accommodation();
+
+        accommodation.Name = NameEntry.Text;
+        accommodation.UsedSpace = usedSpace;
+        accommodation.TotalSpace = totalSpace;
+
+        await _accommodationsRepo.SaveAsync(accommodation);
+        await Navigation.PopAsync();
+    }
+}
+```
+
+*Figure 22: Review code - another view that could use MVVM pattern*
+
+
+![Figure 23](./images/Week10CodeReview3.PNG)
+
+*Figure 23: Review comment - another explanation of how we can use MVVM 
+
+In the Figure 22 we have another class that could use the MVVM pattern, in my comment (Figure 23) I provided good reason why it could be used. The UI for Creating/Editing could be reused if two view models with logic are created thus separating the functionality and making code more readable. This would only require setting the binding context to respective model. 
+
+
+```
+        [Test]
+        public async Task GetAccommodationTestAsync()
+        {
+            var testAccommodation = new Accommodation
+            {
+                Name = "Moscow accommodation",
+                UsedSpace = 98,
+                TotalSpace = 105
+            };
+            var testAccommodationTwo = new Accommodation
+            {
+                Name = "Brasilia accommodation",
+                UsedSpace = 58,
+                TotalSpace = 58
+            };
+            await repo.SaveAsync(testAccommodation);
+            await repo.SaveAsync(testAccommodationTwo);
+
+            var accommodationtList = await repo.GetAllAsync();
+            var accommodationOne = accommodationtList.FirstOrDefault(accommodation => accommodation.Name == testAccommodation.Name);
+            var accommodationTwo = accommodationtList.FirstOrDefault(accommodation => accommodation.Name == testAccommodationTwo.Name);
+
+            Assert.That(accommodationOne.Name, Is.EqualTo(testAccommodation.Name), "The first test accommodation was not retrieved");
+            Assert.That(accommodationTwo.Name, Is.EqualTo(testAccommodationTwo.Name), "The second test accommodation was retrieved");
+        }
+```
+
+*Figure 24: Review code - Multiple Asserts explanation
+
+
+![Figure 25](./images/Week10CodeReview2.PNG)
+
+*Figure 25: Review comment - Multiple Asserts explanation
+
+On the Figure 24 we can see a test that has two assert statements. During my work placement I have learned that using Assert.Multiple is a good solution when creating two objects that we want to check within the test. In the Figure 25 I provided more detailed explanation as to why this is the case and provided a source for more in depth knowledge. 
 
 
 ## Reflections
@@ -474,8 +724,8 @@ To address this I removed the empty line, I think linting tool would make sense 
 
 ### My personal workflow
 
-Recently, I have been struggling with staying focused when working on project for multiple hours. I have multiple courseworks and assesment and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I wanted to do. On top of that there are many distractions around and sometimes I cannot focus on the task at hand.
-I decided to try a pomodoro approach after a conversation with one of my colleagues from the group. For every 50 minutes of work I take a 10 minute break. Additionally, I removed all other distractions from my room(my phone).
+Recently, I have been struggling with staying focused when working on project for multiple hours. I have many courseworks and assesment and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I wanted to do. On top of that there are many distractions around and sometimes I cannot focus on the task at hand.
+I decided to try a pomodoro technique after a conversation with one of my colleagues from the group. For every 50 minutes of work I take a 10 minute break. Additionally, I removed all other distractions from my room(my phone).
 
 This allowed me to complete more work within few hours than what I used to complete in a day. By separating time for work and rest I became more efficient and organised.
 Retrospectively, I regret not doing it before but overall I have shown that I can adapt when things do not go as planned and I can find a solution to a problem.
@@ -484,15 +734,21 @@ This might seem not related to the subject but in the real world we do have to c
 
 [Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_emptyLine.png "Figure 14"
 
-[Figure 15]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 15"
+[Figure 15]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_references.png "Figure 15"
 
-[Figure 16]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Constructor_review.png "Figure 16"
+[Figure 16]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_IncorrectName.png "Figure 16"
 
-[Figure 17]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 17"
+[Figure 17]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_Incorrect2.png "Figure 17"
 
-[Figure 18]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Constructor_review.png "Figure 18"
+[Figure 18]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Positive_comment.png "Figure 18"
 
-[Figure 19]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/KISS_review.png "Figure 19"
+[Figure 19]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_asnwer.png "Figure 19"
+
+[Figure 21]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week10CodeReview1.png "Figure 21"
+
+[Figure 23]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week10CodeReview3.png "Figure 23"
+
+[Figure 25]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week10CodeReview2.png "Figure 25"
 
 Week 10 is the third and last week in a series in which the goal is to improve your 
 personal software engineering practice. Your portfolio entry has the same general content
