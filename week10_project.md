@@ -4,19 +4,19 @@
 
 This week I have been building on the work from last week by working on the [Maintain view lists of partner agencies (UN, International, national, NGO, voluntary)](https://github.com/xinjoonha/SET09102_PURPLE/issues/64). Previously I have struggled to implement the MVVM pattern for the ViewAllOrganisationsPage but this week I have been able to incorporate it into my code. I have resorted to using MVVM community toolkit version 8.0.0 as it was the latest one that has not caused any issues when running the application. In summary, I made the following changes to the code:
 
-*+ added view model for ViewAllorganisationsPage
+* added view model for ViewAllorganisationsPage
 
 
-*+ changed XAML file so it can work with the view model
+* changed XAML file so it can work with the view model
 
 
-*+ added lazy initialization to the repository pattern 
+* added lazy initialization to the repository pattern 
 
 
-*+ registered singletons for the view, view model, and repositories.
+* registered singletons for the view, view model, and repositories.
 
 
-*+ cleaned up not needed database initialization within the App.xaml.cs
+* cleaned up not needed database initialization within the App.xaml.cs
 
 
 ```
@@ -495,7 +495,6 @@ To amend that I changed the name of the method as suggested in Figure 17.
 
 *Figure 19: Review comment - query about code - explanation
 
-
 The comment in Figure 18 was unusual as it was mostly asking for clarification. I provided a brief explanation as per the Figure 19. I explained where the dependency is registered within our app. 
 
 
@@ -584,6 +583,7 @@ public partial class AllAccommodationsPage : ContentPage
 *Figure 20: Review code - AllAccommodationsPage code
 
 
+
 ![Figure 21](./images/Week10CodeReview1.PNG)
 
 *Figure 21: Review comment - Explanation of issue raised
@@ -669,6 +669,7 @@ public partial class EditAccommodationPage : ContentPage
 *Figure 22: Review code - another view that could use MVVM pattern*
 
 
+
 ![Figure 23](./images/Week10CodeReview3.PNG)
 
 *Figure 23: Review comment - another explanation of how we can use MVVM 
@@ -705,6 +706,7 @@ In Figure 22 we have another class that could use the MVVM pattern, in my commen
 ```
 
 *Figure 24: Review code - Multiple Asserts explanation
+
 
 
 ![Figure 25](./images/Week10CodeReview2.PNG)
