@@ -2,21 +2,21 @@
 
 ## Summary
 
-This week I have been building on the work from last week by working on the [Maintain view lists of partner agencies (UN, International, national, NGO, voluntary)](https://github.com/xinjoonha/SET09102_PURPLE/issues/64). Previously I have struggled to implement the MVVM pattern for the ViewAllOrganisationsPage but this week I have been able to incorporate it into my code. I have resorted to using MVVM community toolkit version 8.0.0 as it was the latest one that have not caused any issues when running the application. In summary I made following changes to the code:
+This week I have been building on the work from last week by working on the [Maintain view lists of partner agencies (UN, International, national, NGO, voluntary)](https://github.com/xinjoonha/SET09102_PURPLE/issues/64). Previously I have struggled to implement the MVVM pattern for the ViewAllOrganisationsPage but this week I have been able to incorporate it into my code. I have resorted to using MVVM community toolkit version 8.0.0 as it was the latest one that has not caused any issues when running the application. In summary, I made the following changes to the code:
 
 *+ added view model for ViewAllorganisationsPage
 
 
-*+ changed xaml file so it can work with the view model
+*+ changed XAML file so it can work with the view model
 
 
 *+ added lazy initialization to the repository pattern 
 
 
-*+ registered singletons for the view, view model, repositories.
+*+ registered singletons for the view, view model, and repositories.
 
 
-*+ cleaned up not needed database initialization within the App.xamls.cs
+*+ cleaned up not needed database initialization within the App.xaml.cs
 
 
 ```
@@ -54,9 +54,9 @@ This week I have been building on the work from last week by working on the [Mai
 
 *Figure 1: Xaml for the ViewAllOrganisationPage*
 
-I made several changes to the xaml file for the ViewModel to work with the UI.
-I had to add references to the *ViewAllOrganisationViewModel* but also to the *Undac.Models* as can be seen in the top part of the Figure 1. I specified the viewmodel namespace and the view model itself for this xaml file.
-The addition of UndacModel reference is because of the need to display a list of organisation objects. 
+I made several changes to the XAML file for the ViewModel to work with the UI.
+I had to add references to the *ViewAllOrganisationViewModel* but also to the *Undac.Models* as can be seen in the top part of Figure 1. I specified the ViewModel namespace and the view model itself for this XAML file.
+The addition of UndacModel reference is because of the need to display a list of organisation objects. Within the ListView I added *x:DataType="model:Organisation"* so that the UI knows which type of object it will be displaying and it can access its properties. 
 
 
 ```
@@ -90,8 +90,8 @@ The addition of UndacModel reference is because of the need to display a list of
 
 *Figure 3: ModelView - Search bar logic*
 
-I have added Search commands to the xaml which I bound with the method/command in the view model using the RelayCommand annotiation as can be seen in Figure 2 and 3. The logic for filtering is moved to a different static class that handles the filtering.
-I had to keep two separte lists for organisations to make sure that filtering runs smoothly. 
+I have added Search commands to the XAML which I bound with the method/command in the view model using the RelayCommand annotation as can be seen in Figures 2 and 3. The logic for filtering is moved to a different static class that handles the filtering.
+I had to keep two separate lists for organisations to make sure that filtering ran smoothly. 
 
 
 ```
@@ -118,14 +118,14 @@ I had to keep two separte lists for organisations to make sure that filtering ru
 
 *Figure 4: ModelView - Triggering the command*
 
-As per the Figure 4, anytime one of the search bars changes the FilterOrganisation command/method is executed. This is somehting I came across thanks to the ChatGpt when trying to figure out how to trigger the filter method for search bars.
+As per Figure 4, anytime one of the search bars changes the FilterOrganisation command/method is executed. This is something I came across thanks to the ChatGpt when trying to figure out how to trigger the filter method for search bars.
 
 
 ```
         public ViewAllOrganisationsViewModel(IOrganisationRepository organisationRepository)
         {
             _organisationRepository = organisationRepository;
-            LoadOrganisations();
+            LoadOrganisationsAsync();
         }
 ```
 
@@ -140,7 +140,7 @@ As per the Figure 4, anytime one of the search bars changes the FilterOrganisati
 
 *Figure 6: Dependecy Injection - registering singletons for dependecy injection service*
 
-In the constructor for the view model(Fig 5), I inject the interface required for loading organisations from the database the LoadOrganisation methods just retrieves list of organisations from the database. I also registered both with MAUI dependency injection service(Fig 6). 
+In the constructor for the view model(Fig 5), I inject the interface required for loading organisations from the database, the *LoadOrganisationAsync* method just retrieves a list of organisations from the database. I also registered both with the MAUI dependency injection service(Fig 6). 
 
 
 ```
@@ -180,9 +180,9 @@ public partial class ViewAllOrganisationsPage : ContentPage
 
 *Figure 7: View - changes to the view code behind class*
 
-Thanks to the view model my View class shrank significantly. I only required the OnAppearing method because of the Page needing to navigate to the a page where we change the status of the organisation and on return it needs to update the view. 
-Aside fronm that I am handling an event where user navigates to another page to edit status of an organisation. 
-Last week I did not implement this functionality because of few reason but one of then was connected to initialising component before binding context was set.
+Thanks to the view model my View class shrank significantly. I only required the OnAppearing method because the Page needs to navigate to the page where we change the status of the organisation and in return it needs to update the view. 
+Aside from that I am handling an event where the user navigates to another page to edit the status of an organisation. 
+Last week I did not implement this functionality for a few reasons but one of them was connected to initialising a component before the binding context was set.
 
 
 ```
@@ -252,12 +252,12 @@ Last week I did not implement this functionality because of few reason but one o
 
 *Figure 8: Repository - changes to the class*
 
-Another important part of my update is that I have used lazy initialisation. Firstly instead of passing the SQLlite connection in the constructor I inject the database. This allowed me to add database.Init() to each method thus allowing for lazy initialisation when a method is called.
+Another important part of my update is that I have used lazy initialisation. Firstly instead of passing the SQLlite connection in the constructor I inject the database. This allowed me to add a database.Init() to each method thus allowing for lazy initialisation when a method is called.
 
 
 ## Testing
 
-I have conducted extensive manual testing and ensured all of the unit tests pass. This PR is an improvement to the work from previous week thus my tests remained the same. I have extracted the methods for filtering the organisations list to a static class. Below I are my tests:
+I have conducted extensive manual testing and ensured all of the unit tests pass. This PR is an improvement to the work from the previous week thus my tests remained the same. I have extracted the methods for filtering the organisation's list into a static class. Below are my tests:
 
 ```
         [Test]
@@ -453,24 +453,24 @@ Finally, I have considered the case when there is no match for the searched phra
 
 ## Getting my code reviewed
 
-I am not getting a large amount of code reviews despite asking multiple times on the discord group. I know that there are few reasons for it. Firstly, we do not have too many engaged group memebers. Secondly, I try to innovate every week and add something new and valuable to the project. This means that people are not familiar with the new functionality(Repository pattern or MVVM) and they do not have much to add apart from review from perspective of coding conventions and formatting. 
-This week I received a review from my colleague in which he pointed out few mistakes that I repeated in the past. I struggle with empty lines and forget about removing unused references. I am dislexic so I have to take extra care when reviewing formatting of my code but there seem to be always something that I miss. I think I should start looking into some kind of linting tool to help me with that. 
+I am not getting a large number of code reviews despite asking multiple times on the Discord group. I know that there are a few reasons for it. Firstly, we do not have too many engaged group members. Secondly, I try to innovate every week and add something new and valuable to the project. This means that people are not familiar with the new functionality(Repository pattern or MVVM) and they do not have much to add apart from review from the perspective of coding conventions and formatting. 
+This week I received a review from my colleague in which he pointed out a few mistakes that I repeated in the past. I struggle with empty lines and forget about removing unused references. I am dyslexic so I have to take extra care when reviewing the formatting of my code but there seems to be always something that I miss. I think I should start looking into some kind of linting tool to help me with that. 
 
-This week I only had one occurence of an extra empty line in my code, in the past that happened to me much more often.
+This week I only had one occurrence of an extra empty line in my code, in the past that happened to me much more often.
 
 
 ![Figure 14](./images/Comment_emptyLine.PNG)
 
 *Figure 14: Review comment - Empty line 
 
-To address this I removed the empty line, I think linting tool would make sense since I keep repeating my mistakes. On the positive side I only had one occurence of this issue in this PR.
+To address this I removed the empty line, I think the linting tool would make sense since I keep repeating my mistakes. On the positive side, I only had one occurence of this issue in this PR.
 
 
 ![Figure 15](./images/Comment_references.PNG)
 
 *Figure 15: Review comment - unused reference
 
-In the Figrue 15 I have documented another common mistake I make. Visual Studio adds a lot of sometimes unecessary references to my code. I keep forgetting about checking that. This is something I need to stay on top of but I think a linting tool could help to highlight this. I removed unused references from the code. 
+In Figure 15 I have documented another common mistake I make. Visual Studio adds a lot of sometimes unnecessary references to my code. I keep forgetting about checking that. This is something I need to stay on top of but I think a linting tool could help to highlight this. I removed unused references from the code. 
 
 
 ![Figure 16](./images/Comment_IncorrectName.PNG)
@@ -482,7 +482,7 @@ In the Figrue 15 I have documented another common mistake I make. Visual Studio 
 
 *Figure 17: Review comment - incorrect name second comment
 
-Figure 16 & 17 reffer to the same issue which is the incorrect name of the method. Analyser in Visual studio does not pick it up and I did not rename the method accordingly. Async methods should finish on "Async". 
+Figures 16 & 17 refer to the same issue which is the incorrect name of the method. Analyser in Visual studio does not pick it up and I did not rename the method accordingly. Async methods should finish on "Async". 
 To amend that I changed the name of the method as suggested in Figure 17.
 
 
@@ -496,14 +496,14 @@ To amend that I changed the name of the method as suggested in Figure 17.
 *Figure 19: Review comment - query about code - explanation
 
 
-The comment in the Figure 18 was unusual as it was mostly asking for clarification. I provided a brief explanation as per the Figure 19. I explained where the dependency is registered within our app. 
+The comment in Figure 18 was unusual as it was mostly asking for clarification. I provided a brief explanation as per the Figure 19. I explained where the dependency is registered within our app. 
 
 
 ## Leading a code review
 
-Whis week  code review I have completed was on [View the current status of all OSOCC accommodation so that I can ensure that all personal and operational space needs are met](https://github.com/xinjoonha/SET09102_PURPLE/issues/90).
+This week's code review I completed was on [View the current status of all OSOCC accommodation so that I can ensure that all personal and operational space needs are met](https://github.com/xinjoonha/SET09102_PURPLE/issues/90).
 
-I looked through the list of basic code issues such as formatting, naming conventions or code smells. This pull request did not implement MVVM pattern so I included regarding that. 
+I looked through the list of basic code issues such as formatting, naming conventions or code smells. This pull request did not implement the MVVM pattern so I included comments regarding that and some explanations on why it should be done.
 
 ```
 using Undac.Models;
@@ -588,8 +588,8 @@ public partial class AllAccommodationsPage : ContentPage
 
 *Figure 21: Review comment - Explanation of issue raised
 
-I the Figure 20, ideally we would want to be using MVVM pattern  to separate UI from logic and make the code more testable and readable amongst other reasons. I provided the comment as per Figure 21 explaning why and gave example of another PR that is implementing this pattern.
-
+In Figure 20, ideally, we would want to use using MVVM pattern to separate UI from logic to make the code more testable and readable amongst other reasons. I provided the comment as per Figure 21 explaining why and gave the example of another PR that is implementing this pattern.
+In terms of the code smell, I could not find any issues. Methods are fairly short an condensed, names are meaningful and the code is formatted correctly.
 
 ```
 using Undac.Data.Repositories;
@@ -673,7 +673,7 @@ public partial class EditAccommodationPage : ContentPage
 
 *Figure 23: Review comment - another explanation of how we can use MVVM 
 
-In the Figure 22 we have another class that could use the MVVM pattern, in my comment (Figure 23) I provided good reason why it could be used. The UI for Creating/Editing could be reused if two view models with logic are created thus separating the functionality and making code more readable. This would only require setting the binding context to respective model. 
+In Figure 22 we have another class that could use the MVVM pattern, in my comment (Figure 23) I provided a good reason why it could be used. The UI for Creating/Editing could be reused if two view models with logic are created thus separating the functionality and making code more readable. This would only require setting the binding context to the respective model. 
 
 
 ```
@@ -711,25 +711,32 @@ In the Figure 22 we have another class that could use the MVVM pattern, in my co
 
 *Figure 25: Review comment - Multiple Asserts explanation
 
-On the Figure 24 we can see a test that has two assert statements. During my work placement I have learned that using Assert.Multiple is a good solution when creating two objects that we want to check within the test. In the Figure 25 I provided more detailed explanation as to why this is the case and provided a source for more in depth knowledge. 
+In Figure 24 we can see a test that has two assert statements. During my work placement, I have learned that using Assert.Multiple is a good solution when creating two objects that we want to check within the test. In Figure 25 I provided a more detailed explanation as to why this is the case and provided a source for more in-depth knowledge.  
 
 
 ## Reflections
 
-### Teamwork
 
 ### Challanges & learnings
 
+This week I deepened my understanding of how dependency injection is managed automatically by the MAUI app. Thanks to looking into the tutorial and Microsoft documentation I was able to implement that in my code. Learning new concepts takes time and even though I had a good understanding of dependency injection I was not sure how this is handled by the app. 
+Thanks to learning about MVVM I was also exposed to information about XAML and how to connect UI to the ViewModel. I learned more about Commands and Bindings as well as referencing classes in XAML. To some extent, I finally feel that MAUI and .NET app development "clicked" for me as I am getting more confident each week in developing the application. My next goal is to learn more about Entity Framework and look into deploying the SQL database on Azure using my free student account. I want to learn those things as app development with .Net is often using Azure and most of the applications these days are cloud-based therefore understanding how to connect my app to a remote database could be quite an important step in my path to becoming a software developer. Similarly, Entity Framework is often used when developing .Net applications. 
 
+I also started using ChatGPT to explain some of those concepts to me. On one side it is a great resource which can speed up my learning as it provides a lot of valuable information without needing to search the internet. On the other hand by searching for information "manually" I learn more things as I also get the information not strictly related to what I am looking for. The convenience of using ChatGPT is removing that experience from my learning process. 
+Overall, I decided to use it when debugging errors in code and "translating" the information from official Microsoft documentation as it is not a pleasant read most of the time. It is really good at giving me information on how to implement something set by step and provides a good explanation. Previously, I relied mostly on tutorials and partially on documentation but now I have another tool that I can use while learning new concepts. The information from the ChatGPT is not always reliable so I have to make sure that I cross-reference it with other sources as well. 
+
+I mentioned that when working on the project I focus on introducing new/different functionalities in order to maximise my learning. This puts me in a peculiar position when I am getting my code reviewed, as no one is familiar with the code but I realised that this is a way others can actually learn from my pull requests as well. I think this is even better than following a tutorial as this is the code base they are already familiar with and it should make it easier. Previously I implemented the Repository pattern and everyone was on board with that idea. Interestingly, all PRs since implemented the Repository pattern that I created and I feel like I made a contribution to the learning process of my teammates. Before I have not considered this aspect of code review. I only thought that you learned from feedback on your pull request but now I can see another aspect of it. Implementing something new can boost the knowledge of my colleagues. 
+
+I noticed that we have not changed our team workflow for a while. To be fair this is good that we do not think about it anymore just get on with the work. It probably means that we got used to it, in my case this is somehow ingrained in the process because I followed a similar workflow during my work placement. Overall, teamwork this week was much worse than before. We only had a few PRs up for review by Friday night. I think that we had few people leaving the group for various reasons and this affected the number of people engaging in the group project.
 
 ### My personal workflow
 
-Recently, I have been struggling with staying focused when working on project for multiple hours. I have many courseworks and assesment and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I wanted to do. On top of that there are many distractions around and sometimes I cannot focus on the task at hand.
-I decided to try a pomodoro technique after a conversation with one of my colleagues from the group. For every 50 minutes of work I take a 10 minute break. Additionally, I removed all other distractions from my room(my phone).
+Recently, I have been struggling with staying focused when working on a project for multiple hours. I have many courseworks and assessments and every day I study multiple hours without having much time to relax. As I am not a robot sometimes my mind wanders and I cannot focus on what I want to do. On top of that, there are many distractions around and sometimes I cannot focus on the task at hand.
+I decided to try a Pomodoro technique after a conversation with one of my colleagues from the group. For every 50 minutes of work, I take a 10-minute break. Additionally, I removed all other distractions from my room(my phone).
 
-This allowed me to complete more work within few hours than what I used to complete in a day. By separating time for work and rest I became more efficient and organised.
+This allowed me to complete more work within a few hours than what I used to complete in a day. By separating time for work and rest I became more efficient and organised.
 Retrospectively, I regret not doing it before but overall I have shown that I can adapt when things do not go as planned and I can find a solution to a problem.
-This might seem not related to the subject but in the real world we do have to complete projects on time and being efficient is a necessity when working with Agile methodology. 
+This might seem not related to the subject but in the real world we do have to complete projects on time and being efficient is a necessity when working with Agile methodology. I was also happy that I discussed my issues with someone from the group. Overall, I learned something useful by following advice and showed that I reach out for help when I struggle in order to improve as soon as possible.  
 
 
 [Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Comment_emptyLine.png "Figure 14"
@@ -750,26 +757,3 @@ This might seem not related to the subject but in the real world we do have to c
 
 [Figure 25]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week10CodeReview2.png "Figure 25"
 
-Week 10 is the third and last week in a series in which the goal is to improve your 
-personal software engineering practice. Your portfolio entry has the same general content
-as last week's, including:
-
-* A descriptive summary of the issue that you worked on.
-* Snippets from your code with commentary showing how you have used good software design 
-  practice.
-* A descriptive summary of the test code that you have written.
-* A reflective summary of any changes that were requested during the code review along 
-  with your fixes.
-* A descriptive summary of any issues you found with the code that you were asked to review.
-* A general reflective section that identifies, for example,
-  * New things you have realised this week
-  * Common problems that can arise in a team development situation
-  * How your practice compares to other people's
-  * etc.
-
-Be sure to include links to the original items in the team's GitHub repository.
-
-In the reflective sections this week, you should highlight ways that you persona practice
-has improved as before. It would also be good to reflect on any improvements that have
-been made to the agreed team workflow and related procedures. Are things working
-better than they were? What further improvements could be made in the future?
