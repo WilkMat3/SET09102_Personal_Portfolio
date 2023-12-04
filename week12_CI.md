@@ -485,7 +485,7 @@ As per the Figure 13, there are views with 40 or 50 statements that need unit te
 We do not have any UI specific tests either, which could help with test coverage and improve regression testing. 
 
 
-![Figure 13](./images/Resharper.PNG)
+![Figure 13](./images/Week12_CodeCoverage.PNG)
 
 *Figure 13 - Code coverage for views*
 
