@@ -109,7 +109,7 @@ Figure 3 shows how Tests are inheriting the TestBase class. This removes code re
 
 ```
 
-*Figure 3 - Test base class *
+*Figure 3 - Test base class - effect on some of the test classes*
 
 
 
@@ -382,6 +382,7 @@ In Figure 7 I highlighted a few small issues, the typo in the teardown method na
 
 In Figure 8 I left a comment regarding a method that could be potentially split into smaller methods. This is violating KISS, as there are 3 if statements with functionality for filtering. This particular code was not tested either. This did not surprise me as the MVVM was not implemented and the filtering was nested within the view. Ideally, I would like the MVVM to be implemented because it makes testing much easier and it separates concerns. Also filtering should be split into helper methods as this method violates the KISS rule.
 
+
 ![Figure 9](./images/Week12Reviewing3.PNG)
 
 *Figure 9 - advice*
@@ -469,6 +470,24 @@ At the same time, I do not feel like this was a proper experience as this was no
 ### Tools
 
 I started using the ReSharper code analyser with my visual studio. This reduced extra empty lines in my code to 0. I have changed settings so that the line is highlighted when there is an empty line that should not be there. This is difficult to miss and thanks to that change I do not have to scan the code myself to find poor formatting in my code. This frees up my time and improves the quality of my code.
+Here is an example of how Resharper supports me in writing my code:
+
+
+![Figure 12](./images/Resharper.PNG)
+
+*Figure 12 - Resharper higlighting an empty line*
+
+
+### Lack of MVVM affecting our test coverage
+
+I was the only person implementing MVVM pattern,this has an effect on the code coverage as without MVVM the code in view is much more difficult to unit test.
+As per the Figure 13, there are views with 40 or 50 statements that need unit testing. This is much more difficult when MVVM pattern is not applied in contrast we have OrganisationStatusPage and ViewAllOrganisations where MVVM pattern was applied and tests were carried out on the ViewModel thus leaving less statements to be potentially covered by tests. 
+We do not have any UI specific tests either, which could help with test coverage and improve regression testing. 
+
+
+![Figure 13](./images/Resharper.PNG)
+
+*Figure 13 - Code coverage for views*
 
 
 
@@ -482,4 +501,7 @@ I started using the ReSharper code analyser with my visual studio. This reduced 
 
 [Figure 11]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12CrudReview.png "Figure 11"
 
-[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week11MyCodeReview3.png "Figure 12"
+[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Resharper.png "Figure 12"
+
+[Figure 13]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12_CodeCoverage.png "Figure 13"
+
