@@ -462,6 +462,10 @@ The fixed version can be viwed in Figure 1.
 ### CI reflections 
 Working on the Continous Integration pipeline was exciting. This is something that we should have started earlier on in the project as it would help us avoid so many issues with the main branch that we had two weeks ago. The main benefit is that anyone can see that the PR has passed tests and is building without an error just by looking at the workflow. There is no need to build all of this yourself. Moreover, if the PR is not passing tests or not building it would not be eligible for merge as all tests are not passing. 
 
+![Figure 12](./images/Week12_CI.PNG)
+
+*Figure 12 - CI pipline results on the PR*
+
 ### TDD attempt
 This week I kind of had an opportunity to try the TDD while working on the MVVM ticket, I reappropriated the tests from last week first and started working on the view model and UI. I felt that implementing this feature was faster but I cannot tell if it was because I started from testing or is it because I knew what to do from start to finish. 
 
@@ -473,9 +477,9 @@ I started using the ReSharper code analyser with my visual studio. This reduced 
 Here is an example of how Resharper supports me in writing my code:
 
 
-![Figure 12](./images/Resharper.PNG)
+![Figure 13](./images/Resharper.PNG)
 
-*Figure 12 - Resharper higlighting an empty line*
+*Figure 13 - Resharper higlighting an empty line*
 
 
 ### Lack of MVVM affecting our test coverage
@@ -485,9 +489,9 @@ As per the Figure 13, there are views with 40 or 50 statements that need unit te
 We do not have any UI specific tests either, which could help with test coverage and improve regression testing. 
 
 
-![Figure 13](./images/Week12_CodeCoverage.PNG)
+![Figure 14](./images/Week12_CodeCoverage.PNG)
 
-*Figure 13 - Code coverage for views*
+*Figure 14 - Code coverage for views*
 
 
 
@@ -501,7 +505,9 @@ We do not have any UI specific tests either, which could help with test coverage
 
 [Figure 11]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12CrudReview.png "Figure 11"
 
-[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Resharper.png "Figure 12"
+[Figure 12]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12_CI.png "Figure 12"
 
-[Figure 13]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12_CodeCoverage.png "Figure 13"
+[Figure 13]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Resharper.png "Figure 13"
+
+[Figure 14]: https://github.com/WilkMat3/SET09102_Personal_Portfolio/blob/main/images/Week12_CodeCoverage.png "Figure 14"
 
